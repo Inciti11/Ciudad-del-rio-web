@@ -704,26 +704,12 @@ section {
     border-color: var(--white-color);
 }
 
-@keyframes fadeBackground {
-    0% {
-        opacity: 0;
-    }
+/* CORRECCIÓN: Distribución uniforme para 7 slides */
+/* Duración total: 21s (7 slides × 3s cada una) */
 
-    8.33% {
-        opacity: 1;
-    }
-
-    33.33% {
-        opacity: 1;
-    }
-
-    41.66% {
-        opacity: 0;
-    }
-
-    100% {
-        opacity: 0;
-    }
+.slide {
+    animation-duration: 21s;
+    /* Cambiar de 18s a 21s */
 }
 
 .slide:nth-child(1) {
@@ -733,32 +719,64 @@ section {
 
 .slide:nth-child(2) {
     background-image: url('../assets/imagenes/Vistas/Vistas_Malecon\ \(2\).JPG');
-    animation-delay: 6s;
+    animation-delay: 3s;
+    /* Cambiar de 6s a 3s */
 }
 
 .slide:nth-child(3) {
     background-image: url('../assets/imagenes/Vistas/Vistas_Malecon\ \(3\).JPG');
-    animation-delay: 12s;
+    animation-delay: 6s;
+    /* Cambiar de 12s a 6s */
 }
 
 .slide:nth-child(4) {
     background-image: url('../assets/imagenes/Vistas/Vistas_Malecon\ \(4\).jpg');
-    animation-delay: 12s;
+    animation-delay: 9s;
+    /* Cambiar de 12s a 9s */
 }
 
 .slide:nth-child(5) {
     background-image: url('../assets/imagenes/Vistas/Vistas_Malecon\ \(5\).jpg');
     animation-delay: 12s;
+    /* Mantener */
 }
 
 .slide:nth-child(6) {
     background-image: url('../assets/imagenes/Vistas/Vistas_Malecon\ \(6\).jpg');
-    animation-delay: 12s;
+    animation-delay: 15s;
+    /* Cambiar de 12s a 15s */
 }
 
 .slide:nth-child(7) {
     background-image: url('../assets/imagenes/Vistas/Vistas_Malecon\ \(7\).JPG');
-    animation-delay: 12s;
+    animation-delay: 18s;
+    /* Cambiar de 12s a 18s */
+}
+
+/* ACTUALIZAR también los keyframes para 7 slides */
+@keyframes fadeBackground {
+    0% {
+        opacity: 0;
+    }
+
+    4.76% {
+        opacity: 1;
+    }
+
+    /* 1/21 = 4.76% */
+    14.29% {
+        opacity: 1;
+    }
+
+    /* 3/21 = 14.29% */
+    19.05% {
+        opacity: 0;
+    }
+
+    /* 4/21 = 19.05% */
+    100% {
+        opacity: 0;
+    }
 }
 
 .scroll-down {
@@ -772,6 +790,35 @@ section {
     text-align: center;
     animation: bounce 2s infinite;
     cursor: pointer;
+}
+
+@media (min-width: 769px) and (max-width: 1366px) {
+    .scroll-down {
+        display: none !important;
+        /* Ocultar completamente en portátiles */
+    }
+}
+
+/* OPCIONAL: También ocultar en tablets horizontales */
+@media (min-width: 769px) and (max-width: 1024px) {
+    .scroll-down {
+        display: none !important;
+    }
+}
+
+/* MANTENER visible solo en móviles y pantallas grandes */
+@media (max-width: 768px) {
+    .scroll-down {
+        display: block;
+        bottom: 30px;
+    }
+}
+
+@media (min-width: 1367px) {
+    .scroll-down {
+        display: block;
+        bottom: 60px;
+    }
 }
 
 .scroll-down i {
