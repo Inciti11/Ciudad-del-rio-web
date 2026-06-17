@@ -1978,6 +1978,165 @@ body {
     z-index: 5;
 }
 
+.coming-soon-highlight {
+    width: 100%;
+    margin: 0 0 30px;
+}
+
+#proyectos .alrio-block {
+    width: calc(100% - 4rem);
+    max-width: none;
+    margin-left: auto;
+    margin-right: auto;
+    border-radius: 15px;
+}
+
+.alrio-block .content-wrapper {
+    position: relative;
+    z-index: 1;
+    gap: 12px;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+
+.alrio-block {
+    background-image: url('../assets/imagenes/Alrio/portada.jpg');
+    background-size: cover;
+    background-position: center;
+    animation: none;
+    padding: 28px 30px 40px;
+}
+
+.alrio-block::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(rgba(20, 35, 52, 0.42), rgba(20, 35, 52, 0.58));
+    border-radius: inherit;
+    z-index: 0;
+}
+
+.alrio-block .action-content {
+    margin-top: 0;
+    text-align: center;
+    flex-basis: 100%;
+    align-self: center;
+}
+
+.alrio-brand {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.3rem;
+    margin-bottom: 0.35rem;
+    margin-top: -0.35rem;
+    width: 100%;
+}
+
+.alrio-logo {
+    width: min(210px, 48vw);
+    height: auto;
+    display: block;
+}
+
+.alrio-subtitle {
+    font-family: var(--font-body);
+    font-size: 0.62rem;
+    font-weight: 500;
+    letter-spacing: 0.38em;
+    text-transform: uppercase;
+    color: #c9a962;
+}
+
+.alrio-soon-label {
+    font-family: var(--font-body);
+    font-size: 1.05rem;
+    font-weight: 600;
+    color: var(--white-color);
+    text-transform: uppercase;
+    letter-spacing: 0.28em;
+    line-height: 1.2;
+    margin: 0 0 0.5rem;
+}
+
+.alrio-copy {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+}
+
+.alrio-block .alrio-copy h2 {
+    font-family: var(--font-primary);
+    font-size: 1.45em;
+    font-weight: bold;
+    margin: 0;
+    line-height: 1.25;
+    max-width: 28ch;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+@media (min-width: 769px) {
+    .alrio-block .alrio-copy h2 {
+        margin-left: auto;
+        margin-right: auto;
+    }
+}
+
+@media (max-width: 768px) {
+    #proyectos .alrio-block {
+        width: calc(100% - 2rem);
+        padding: 1.85rem 1.5rem;
+        min-height: 430px;
+        display: flex;
+        flex-direction: column;
+    }
+
+    .alrio-block .content-wrapper {
+        flex: 1;
+        width: 100%;
+        min-height: 100%;
+        justify-content: space-between;
+        align-items: center;
+        gap: 0;
+    }
+
+    .alrio-brand {
+        margin: 0.85rem 0 0;
+        flex-shrink: 0;
+    }
+
+    .alrio-copy {
+        margin: 0;
+        width: 100%;
+        flex-shrink: 0;
+    }
+
+    .alrio-block .alrio-copy h2 {
+        font-size: 1.3em;
+        line-height: 1.3;
+    }
+
+    .alrio-soon-label {
+        letter-spacing: 0.24em;
+        margin-bottom: 0.65rem;
+        font-size: 1.4rem;
+    }
+
+    .alrio-block .action-content {
+        margin-top: 0;
+        padding-top: 0;
+        flex-shrink: 0;
+        width: 100%;
+    }
+
+    .alrio-logo {
+        width: min(190px, 58vw);
+    }
+}
+
 .project-container {
     display: grid;
     grid-template-columns: 1fr 1fr;
