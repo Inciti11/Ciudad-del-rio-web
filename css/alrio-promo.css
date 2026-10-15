@@ -5,8 +5,9 @@
     isolation: isolate;
     top: auto;
     left: auto;
-    width: var(--al-card-width, 100%);
-    max-width: var(--al-card-width, 100%);
+    width: var(--al-card-width);
+    max-width: var(--al-card-width);
+    box-sizing: border-box;
     height: auto;
     margin-left: auto;
     margin-right: auto;

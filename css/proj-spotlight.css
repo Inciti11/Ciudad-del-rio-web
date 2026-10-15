@@ -1,25 +1,19 @@
 /* Proyectos — una tarjeta centrada (info / render / video) */
 .proj-stack-wrap {
     --proj-slide-h: clamp(520px, 58vh, 600px);
-    --proj-stage-w: min(880px, 92vw);
-    --proj-wrap-radius: var(--al-card-radius, clamp(22px, 4vw, 32px));
-    margin-top: clamp(2rem, 4vw, 3rem);
-    margin-bottom: 0;
-    padding: clamp(3rem, 6vw, 5rem) clamp(1rem, 3vw, 2rem) clamp(4.5rem, 8vw, 6rem);
-    background: var(--al-hub-panel-bg, var(--primary-color, #142334));
-    border: 1px solid rgba(232, 243, 241, 0.1);
-    box-shadow:
-        var(--al-card-shadow, 0 20px 48px rgba(20, 35, 52, 0.22)),
-        inset 0 1px 0 rgba(255, 255, 255, 0.12);
-    border-radius: var(--proj-wrap-radius);
+    --proj-stage-w: min(880px, 100%);
     overflow: hidden;
 }
 
+.proj-stack-wrap.al-sec-card {
+    --proj-stage-w: min(880px, 100%);
+}
+
 .proj-stack-head {
-    margin: 0 auto clamp(2rem, 4vw, 3rem);
+    margin: 0 auto clamp(1.5rem, 3.5vw, 2.25rem);
     text-align: center;
-    max-width: var(--container-width, 1240px);
-    padding: 0 var(--pad, 56px);
+    max-width: 100%;
+    padding: 0;
 }
 
 .proj-stack-head h2 {
@@ -28,7 +22,7 @@
     font-size: clamp(1.85rem, 4.8vw, 2.55rem);
     font-weight: 600;
     line-height: 1.12;
-    color: var(--white-color);
+    color: var(--primary-color, #142334);
     letter-spacing: 0.04em;
     text-transform: uppercase;
 }
@@ -381,8 +375,6 @@
 @media (max-width: 680px) {
     .proj-stack-wrap {
         --proj-slide-h: clamp(560px, 76vh, 640px);
-        margin-top: clamp(0.65rem, 2vw, 1rem);
-        padding-top: clamp(2.25rem, 5vw, 3rem);
     }
 
     .proj-stack {
@@ -393,7 +385,7 @@
 @media (min-width: 992px) {
     .proj-stack-wrap {
         --proj-slide-h: clamp(500px, 52vh, 580px);
-        --proj-stage-w: min(900px, 78vw);
+        --proj-stage-w: min(900px, 100%);
     }
 
     .proj-panel__slide-content {

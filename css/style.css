@@ -2203,7 +2203,7 @@ body {
     margin: 0 0 30px;
 }
 
-#proyectos .alrio-block {
+#proyectos .alrio-block:not(.alrio-block--promo) {
     width: calc(100% - 4rem);
     max-width: none;
     margin-left: auto;
@@ -2306,7 +2306,7 @@ body {
 }
 
 @media (max-width: 768px) {
-    #proyectos .alrio-block {
+    #proyectos .alrio-block:not(.alrio-block--promo) {
         width: calc(100% - 2rem);
         padding: 1.85rem 1.5rem;
         min-height: 430px;
@@ -4388,8 +4388,8 @@ section.section-bg > .container > h2,
     background: var(--panel-surface, #f7f9f8);
 }
 
-#proyectos {
-    background: var(--white-color);
+#proyectos.al-sec--cards {
+    background: transparent;
 }
 
 

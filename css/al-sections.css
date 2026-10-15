@@ -211,6 +211,10 @@
 }
 
 @media (max-width: 768px) {
+    #why-barranquilla.al-sec-sheet {
+        padding-top: clamp(4.25rem, 18vw, 7rem);
+    }
+
     #why-barranquilla.al-sec-sheet > .container > h2 {
         margin-bottom: clamp(1rem, 3vw, 1.35rem);
     }
@@ -323,7 +327,7 @@
     margin-top: 0;
     position: relative;
     z-index: 6;
-    background: var(--white-color);
+    background: transparent;
 }
 
 /* Gran Malecón + Ciudad del Río — caja e imágenes alineadas con PROYECTOS */
@@ -344,14 +348,29 @@
 }
 
 #gran-malecon.block,
-#proyectos .alrio-block,
-#proyectos .proj-stack-wrap {
+#proyectos .alrio-block {
     width: var(--al-card-width);
     max-width: var(--al-card-width);
     margin-left: auto;
     margin-right: auto;
     border-radius: var(--al-card-radius);
     box-shadow: var(--al-card-shadow);
+}
+
+#proyectos .coming-soon-highlight.alrio-block--promo,
+#proyectos .alrio-block--promo.al-cover-card,
+#proyectos .proj-stack-wrap.al-sec-card {
+    width: var(--al-card-width);
+    max-width: var(--al-card-width);
+    margin-left: auto;
+    margin-right: auto;
+    box-sizing: border-box;
+}
+
+#proyectos .proj-stack-wrap.al-sec-card {
+    margin-top: 0;
+    margin-bottom: clamp(0.85rem, 2.2vw, 1.35rem);
+    padding-bottom: clamp(2.25rem, 5vw, 3.25rem);
 }
 
 #gran-malecon.block {
