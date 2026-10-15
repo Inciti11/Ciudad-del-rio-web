@@ -76,6 +76,27 @@
     --header-height-scrolled: 60px;
     --header-height-current: var(--header-height-initial);
     /* JS Updated */
+    --gold-accent: #ffffff;
+    --gold-accent-soft: rgba(255, 255, 255, 0.55);
+    --cream-soft: #f4efe6;
+    --pad: 56px;
+    --cdr-sand: #ffffff;
+    --cdr-bone: #f4efe6;
+    --cdr-ink: #142334;
+    --cdr-wa-green: #25d366;
+    --btn-radius: 999px;
+}
+
+@media (max-width: 1180px) {
+    :root {
+        --pad: 40px;
+    }
+}
+
+@media (max-width: 680px) {
+    :root {
+        --pad: 22px;
+    }
 }
 
 /* --- Estilos Base (Desktop - Dos Columnas) --- */
@@ -340,7 +361,7 @@ a:hover {
 .container {
     max-width: var(--container-width);
     margin: 0 auto;
-    padding: 0 2rem;
+    padding: 0 var(--pad);
 }
 
 section {
@@ -355,12 +376,12 @@ section {
 
 /* Fondo claro por defecto */
 #desarrollo-barranquilla,
-#our-team,
-#proyectos
-
-/* Ajustado: Proyectos ahora tiene fondo claro */
-    {
+#our-team {
     background-color: #fff;
+}
+
+#proyectos {
+    background-color: var(--white-color);
 }
 
 /* Fondo blanco específico */
@@ -434,13 +455,18 @@ section {
     background: linear-gradient(90deg, var(--secondary-color) 0%, var(--tertiary-color) 100%);
     color: var(--white-color);
     border-color: transparent;
-    box-shadow: 0 6px 20px rgba(191, 160, 143, 0.3);
+    box-shadow: 0 4px 14px rgba(20, 35, 52, 0.22);
+}
+
+.btn-primary::before {
+    display: none;
 }
 
 .btn-primary:hover {
-    transform: translateY(-5px) scale(1.03);
-    box-shadow: 0 10px 25px rgba(191, 160, 143, 0.4);
+    transform: none;
+    box-shadow: 0 6px 18px rgba(20, 35, 52, 0.28);
     color: var(--white-color);
+    filter: brightness(1.06);
 }
 
 .btn-secondary {
@@ -501,6 +527,20 @@ section {
     height: var(--header-height-scrolled);
     box-shadow: 0 3px 20px var(--shadow-light);
     border-bottom: 1px solid var(--border-color);
+}
+
+#main-header.al-nav:not(.is-solid):not(.is-menu) {
+    background-color: transparent;
+    backdrop-filter: none;
+    -webkit-backdrop-filter: none;
+    border-bottom-color: transparent;
+    box-shadow: none;
+}
+
+#main-header.al-nav:not(.is-solid):not(.is-menu).scrolled {
+    background-color: transparent;
+    border-bottom-color: transparent;
+    box-shadow: none;
 }
 
 #main-header .container {
@@ -902,9 +942,17 @@ section {
     position: absolute;
     bottom: -1px;
     left: 0;
+    right: 0;
+    width: 100%;
     line-height: 0;
     z-index: 10;
     transform: rotate(180deg);
+}
+
+.angled-divider-bottom svg {
+    display: block;
+    width: 100%;
+    height: auto;
 }
 
 .shape-fill {
@@ -1287,8 +1335,7 @@ body {
 
 @media (max-width: 768px) {
 
-    .view-image img,
-    .ciudad-rio-image img {
+    .view-image img {
         max-height: 350px;
     }
 }
@@ -1462,9 +1509,16 @@ body {
         300% 300%;
     /* Tamaño para la Capa 2 */
 
-    /* Aplicamos la animación */
-    animation: aura-flow 20s ease-in-out infinite;
-    /* Más lenta y suave */
+    /* Animación suave; pausa fuera de pantalla para scroll más fluido */
+    animation: aura-flow 24s ease-in-out infinite;
+    animation-play-state: running;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+    .block:not(.alrio-block--promo) {
+        content-visibility: auto;
+        contain-intrinsic-size: auto 420px;
+    }
 }
 
 /* Keyframes para la animación de flujo tipo aurora */
@@ -1626,6 +1680,14 @@ body {
 }
 
 /* --- Mapa Lotes Section --- */
+#blog {
+    scroll-margin-top: calc(var(--header-height-current, 70px) + 1.25rem);
+}
+
+#blog > .container > h2 {
+    scroll-margin-top: inherit;
+}
+
 #mapa-lotes {
     z-index: 5;
 }
@@ -1635,16 +1697,151 @@ body {
 }
 
 /* Más espacio entre texto y mapa */
+/* Malecón 72 — franja superior ancha y baja (hero / mapa) */
+.m72-top-bar {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    gap: clamp(0.45rem, 2vw, 0.85rem);
+    width: 100%;
+    margin: 0 auto;
+    padding: clamp(0.4rem, 1.4vw, 0.55rem) clamp(0.75rem, 2.8vw, 1.15rem);
+    box-sizing: border-box;
+    background: rgba(20, 35, 52, 0.72);
+    border: 1px solid rgba(255, 255, 255, 0.22);
+    border-radius: clamp(14px, 2.8vw, 20px);
+    box-shadow: 0 8px 28px rgba(0, 0, 0, 0.12);
+}
+
+.m72-top-bar__title {
+    flex: 1 1 12rem;
+    margin: 0;
+    text-align: center;
+    font-family: var(--font-body);
+    font-size: clamp(0.58rem, 1.85vw, 0.78rem);
+    font-weight: 700;
+    line-height: 1.2;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    color: var(--white-color);
+}
+
+.m72-top-bar__btn {
+    flex: 0 0 auto;
+    display: inline-block;
+    padding: clamp(0.32rem, 1.2vw, 0.45rem) clamp(0.7rem, 2.4vw, 1rem) !important;
+    font-size: clamp(0.62rem, 1.75vw, 0.74rem) !important;
+    line-height: 1.15;
+    border-radius: 999px;
+    white-space: nowrap;
+}
+
+.m72-top-bar .m72-top-bar__btn.m72-button {
+    background-color: rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.28);
+    font-weight: 600;
+}
+
+.m72-top-bar .m72-top-bar__btn.m72-button:hover {
+    background-color: rgba(255, 255, 255, 0.18);
+    border-color: rgba(255, 255, 255, 0.38);
+}
+
+.m72-top-bar--section {
+    max-width: min(980px, 100%);
+    margin: 0 auto clamp(1.25rem, 3.5vw, 2rem);
+}
+
+@media (min-width: 900px) {
+    .m72-top-bar {
+        flex-wrap: nowrap;
+        justify-content: space-between;
+        padding: clamp(0.42rem, 1vw, 0.52rem) clamp(1rem, 2.5vw, 1.35rem);
+    }
+
+    .m72-top-bar__title {
+        text-align: left;
+    }
+}
+
+@media (max-width: 520px) {
+    .m72-top-bar__title {
+        font-size: clamp(0.52rem, 2.65vw, 0.65rem);
+        letter-spacing: 0.03em;
+    }
+}
+
+.blog-map-section {
+    padding: clamp(3rem, 7vw, 5rem) 0;
+}
+
+.blog-map-section .lead {
+    margin-bottom: clamp(1.5rem, 4vw, 2.5rem);
+}
+
 .map-container {
+    position: relative;
     overflow: hidden;
     height: 500px;
     margin-top: 0;
     /* Quitar margen si el P.lead ya lo da */
     border-radius: var(--border-radius);
     box-shadow: 0 10px 30px var(--shadow-medium);
+    isolation: isolate;
+}
+
+.map-container--with-cta {
+    opacity: 1 !important;
+    transform: none !important;
+    filter: none !important;
+}
+
+/* CTA Malecón 72 sobre el mapa — compacto y adaptable */
+.map-m72-cta {
+    position: absolute;
+    z-index: 5;
+    pointer-events: auto;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    width: min(88%, 380px);
+    padding: clamp(0.65rem, 2.5vw, 1rem) clamp(0.85rem, 3.5vw, 1.25rem);
+    box-sizing: border-box;
+    text-align: center;
+    background: rgba(20, 35, 52, 0.78);
+    border: 1px solid rgba(255, 255, 255, 0.55);
+    border-radius: clamp(10px, 2.5vw, 14px);
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.28);
+}
+
+.map-m72-cta a {
+    pointer-events: auto;
+}
+
+.map-m72-cta__title {
+    margin: 0 0 clamp(0.55rem, 2vw, 0.85rem);
+    font-family: var(--font-body);
+    font-size: clamp(0.68rem, 2.65vw, 0.88rem);
+    font-weight: 700;
+    line-height: 1.28;
+    letter-spacing: 0.03em;
+    text-transform: uppercase;
+    color: var(--white-color);
+}
+
+.map-m72-cta__btn {
+    display: inline-block;
+    padding: clamp(0.4rem, 1.6vw, 0.55rem) clamp(0.85rem, 3.2vw, 1.15rem) !important;
+    font-size: clamp(0.68rem, 2.2vw, 0.8rem) !important;
+    line-height: 1.2;
+    border-radius: 999px;
 }
 
 .map-container iframe {
+    position: relative;
+    z-index: 1;
+    display: block;
     width: 100%;
     height: 100%;
     border: 0;
@@ -1654,6 +1851,29 @@ body {
 @media (max-width: 768px) {
     .map-container {
         height: 400px;
+    }
+
+    .map-m72-cta {
+        top: auto;
+        bottom: clamp(0.65rem, 2.5vw, 1rem);
+        transform: translateX(-50%);
+        width: min(calc(100% - 1.25rem), 340px);
+        padding: clamp(0.55rem, 2.2vw, 0.85rem) clamp(0.75rem, 3vw, 1rem);
+    }
+
+    .map-m72-cta__title {
+        font-size: clamp(0.62rem, 2.45vw, 0.78rem);
+        line-height: 1.22;
+    }
+}
+
+@media (max-width: 420px) {
+    .map-m72-cta {
+        width: min(calc(100% - 1rem), 300px);
+    }
+
+    .map-m72-cta__title {
+        letter-spacing: 0.02em;
     }
 }
 
@@ -2046,7 +2266,7 @@ body {
     font-weight: 500;
     letter-spacing: 0.38em;
     text-transform: uppercase;
-    color: #c9a962;
+    color: var(--white-color);
 }
 
 .alrio-soon-label {
@@ -2274,12 +2494,19 @@ body {
 
 /* --- Contact Section --- */
 #contact {
+    --footer-sheet-radius: clamp(22px, 4vw, 32px);
     position: relative;
     z-index: 5;
-    padding-top: 10rem;
-    padding-bottom: 10rem;
+    padding-top: clamp(5rem, 12vw, 10rem);
+    padding-bottom: calc(clamp(3.75rem, 9vw, 5.5rem) + var(--footer-sheet-radius));
+    margin-bottom: 0;
     background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%);
-    /* Fondo para la sección oscura */
+}
+
+@media (max-width: 680px) {
+    #contact {
+        --footer-sheet-radius: clamp(24px, 6vw, 28px);
+    }
 }
 
 #contact .container {
@@ -2358,14 +2585,10 @@ body {
 
 /* --- Footer --- */
 #main-footer {
-    background-color: var(--dark-text);
+    background-color: var(--primary-color);
     color: var(--grey-text);
-    padding: 6rem 0 4rem 0;
+    padding: clamp(2.25rem, 5vw, 3.5rem) 0 clamp(2rem, 5vw, 3rem);
     text-align: center;
-    position: relative;
-    z-index: 9;
-    margin-top: -1px;
-    /* Solapa ligeramente el divisor si existe */
 }
 
 #main-footer p {
@@ -2394,8 +2617,9 @@ body {
 .footer-logo img {
     display: block;
     width: auto;
-    max-width: 180px;
-    margin: 0 auto 1.5rem auto;
+    max-width: min(200px, 52vw);
+    height: auto;
+    margin: 0 auto 1.25rem auto;
 }
 
 .social-icons {
@@ -2430,32 +2654,7 @@ body {
     color: rgba(232, 243, 241, 0.4);
 }
 
-/* --- Whatsapp --- */
-.whatsapp-float {
-    position: fixed;
-    width: 60px;
-    height: 60px;
-    bottom: 40px;
-    right: 40px;
-    background-color: #25d366;
-    color: #FFF;
-    border-radius: 50px;
-    text-align: center;
-    font-size: 30px;
-    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);
-    z-index: 1000;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    text-decoration: none;
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-}
-
-.whatsapp-float:hover {
-    transform: scale(1.1);
-    box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.3);
-    color: #FFF;
-}
+/* WhatsApp: ver css/cdr-wa.css (.whatsapp-float.al-wa) */
 
 /* --- Responsive General --- */
 @media (max-width: 1024px) {
@@ -2565,8 +2764,8 @@ body {
     }
 
     #contact {
-        padding-top: 8rem;
-        padding-bottom: 8rem;
+        padding-top: clamp(4rem, 10vw, 8rem);
+        padding-bottom: clamp(3.25rem, 8vw, 4.5rem);
     }
 
     #our-team .team-member {
@@ -2575,13 +2774,6 @@ body {
         flex-basis: auto;
     }
 
-    .whatsapp-float {
-        width: 50px;
-        height: 50px;
-        bottom: 20px;
-        right: 20px;
-        font-size: 25px;
-    }
 }
 
 @media (max-width: 576px) {
@@ -2601,7 +2793,12 @@ body {
     }
 
     #main-footer {
-        padding: 4rem 0 2rem 0;
+        padding: 2.25rem 0 max(2rem, env(safe-area-inset-bottom, 0px));
+    }
+
+    #main-footer .container {
+        padding-left: var(--pad);
+        padding-right: var(--pad);
     }
 
     .social-icons a {
@@ -3167,27 +3364,14 @@ body.mobile-nav-active {
 }
 
 .project-btn::before {
-    content: "";
-    position: absolute;
-    top: 0;
-    left: -100%;
-    width: 100%;
-    height: 100%;
-    background: linear-gradient(90deg,
-            transparent,
-            rgba(255, 255, 255, 0.2),
-            transparent);
-    transition: left 0.5s;
-}
-
-.project-btn:hover::before {
-    left: 100%;
+    display: none;
 }
 
 .project-btn:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 8px 25px rgba(31, 52, 71, 0.3);
+    transform: none;
+    box-shadow: 0 6px 18px rgba(20, 35, 52, 0.28);
     color: var(--white-color);
+    filter: brightness(1.06);
 }
 
 .project-btn.disabled {
@@ -3979,7 +4163,7 @@ body.mobile-nav-active {
 .container {
     max-width: 1200px;
     margin: 0 auto;
-    padding: 0 2rem;
+    padding: 0 var(--pad);
 }
 
 
@@ -4071,7 +4255,7 @@ body.mobile-nav-active {
 }
 
 /* Ajustar el contenido principal del hero para dar espacio */
-#pre-hero-banner .banner-content {
+#pre-hero-banner:not(.cdr-hero) .banner-content {
     margin-top: 8rem;
     /* Espacio para el banner superpuesto */
 }
@@ -4101,7 +4285,7 @@ body.mobile-nav-active {
     }
 
 
-    #pre-hero-banner .banner-content {
+    #pre-hero-banner:not(.cdr-hero) .banner-content {
         margin-top: 9rem;
     }
 }
@@ -4143,8 +4327,105 @@ body.mobile-nav-active {
         font-size: 0.85rem;
     }
 
-    #pre-hero-banner .banner-content {
+    #pre-hero-banner:not(.cdr-hero) .banner-content {
         margin-top: 10rem;
         /* Más espacio en móvil */
+    }
+}
+
+/* --- Pulido premium (inspirado ALRÍO) + rendimiento visual --- */
+section.section-bg > .container > h2::after,
+.projects-showcase-section > .container > h2::after {
+    content: '';
+    display: block;
+    width: 72px;
+    height: 2px;
+    margin: 1rem auto 0;
+    background: linear-gradient(90deg, transparent, var(--primary-color, #142334), transparent);
+}
+
+section.section-bg > .container > h2,
+.projects-showcase-section > .container > h2 {
+    margin-bottom: 2.75rem;
+}
+
+#main-nav ul li a::after {
+    background: linear-gradient(90deg, var(--secondary-color), var(--gold-accent));
+}
+
+.feature-item:hover {
+    border-color: var(--gold-accent-soft);
+}
+
+.feature-item .icon {
+    background: linear-gradient(135deg, var(--secondary-color), var(--tertiary-color));
+    box-shadow: 0 6px 18px rgba(20, 35, 52, 0.18);
+}
+
+.project-card {
+    border: 1px solid transparent;
+}
+
+.project-card:hover {
+    border-color: var(--gold-accent-soft);
+}
+
+.btn-primary {
+    background: linear-gradient(90deg, var(--secondary-color) 0%, var(--tertiary-color) 55%, #1a2f42 100%);
+}
+
+.btn-primary:hover {
+    box-shadow: 0 6px 18px rgba(20, 35, 52, 0.28);
+}
+
+.block .m72-button:hover,
+.m72-button:hover {
+    border-color: var(--gold-accent);
+    box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.45);
+}
+
+.section-bg {
+    background: var(--panel-surface, #f7f9f8);
+}
+
+#proyectos {
+    background: var(--white-color);
+}
+
+
+section[id] {
+    content-visibility: auto;
+    contain-intrinsic-size: auto 600px;
+}
+
+#pre-hero-banner,
+#why-barranquilla,
+#proyectos,
+#mapa-lotes,
+#main-header,
+.alrio-block {
+    content-visibility: visible;
+}
+
+#mapa-lotes .map-m72-cta {
+    opacity: 1;
+    visibility: visible;
+}
+
+@media (prefers-reduced-motion: reduce) {
+    html {
+        scroll-behavior: auto;
+    }
+
+    *,
+    *::before,
+    *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+    }
+
+    .feature-item:hover {
+        transform: none;
     }
 }

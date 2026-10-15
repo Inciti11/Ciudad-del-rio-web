@@ -16,299 +16,94 @@
         rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
-    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
-    <link rel="stylesheet" href="css/style.css">
+        <link rel="stylesheet" href="css/style.css?v=20260207c">
+    <link rel="stylesheet" href="css/al-nav.css?v=20260208r">
+    <link rel="stylesheet" href="css/al-sections.css?v=20260207c">
+    <link rel="stylesheet" href="css/blog-pages.css?v=20260208c">
 
-    <style>
-        /* Estilos específicos para páginas de blog */
-        .blog-header {
-            background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.4)), url('./assets/imagenes/Blog/Blog_1.jpeg');
-            background-size: cover;
-            background-position: center;
-            height: 60vh;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: white;
-            text-align: center;
-            margin-top: var(--header-height-current, 70px);
-            border-radius: 0 0 25px 25px;
-            overflow: hidden;
-        }
-
-        #main-nav ul li {
-            margin-left: 2rem;
-        }
-
-
-        .blog-header h1 {
-            font-size: clamp(2rem, 5vw, 3.5rem);
-            margin-bottom: 1rem;
-            font-size: clamp(1.8rem, 4vw, 2rem);
-            color: white;
-        }
-
-        @media (max-width: 768px) {
-            .blog-content h2 {
-                font-size: 1.5rem;
-            }
-
-            .blog-content p {
-                font-size: 0.95rem;
-            }
-        }
-
-        .blog-meta {
-            font-size: 1rem;
-            opacity: 0.9;
-        }
-
-        .blog-content {
-            max-width: 800px;
-            margin: 0 auto;
-            padding: 4rem 2rem;
-            line-height: 1.8;
-        }
-
-        .blog-image-full {
-            width: 100%;
-            height: auto;
-            margin: 2.5rem 0;
-            border-radius: 15px;
-            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
-        }
-
-        .blog-content h2 {
-            font-size: 1.8rem;
-            margin-top: 2.5rem;
-            margin-bottom: 1rem;
-            color: var(--primary-color);
-        }
-
-        .blog-content p,
-        .blog-content strong {
-            font-size: 1rem;
-            line-height: 1.7;
-            margin-bottom: 1.5rem;
-            text-align: justify;
-        }
-
-        .back-to-home {
-            display: inline-flex;
-            align-items: center;
-            color: var(--secondary-color);
-            text-decoration: none;
-            font-weight: 600;
-            margin-bottom: 2rem;
-            transition: color var(--transition-fast);
-        }
-
-        .back-to-home:hover {
-            color: var(--primary-color);
-        }
-
-        .back-to-home i {
-            margin-right: 0.5rem;
-        }
-
-        .cta-section {
-            background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%);
-            padding: 4rem 0;
-            text-align: center;
-            margin-top: 3rem;
-            position: relative;
-            overflow: hidden;
-            border-radius: 25px 25px 0 0;
-        }
-
-        .cta-section::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: rgba(255, 255, 255, 0.05);
-            backdrop-filter: blur(10px);
-        }
-
-        .cta-section .container {
-            position: relative;
-            z-index: 2;
-        }
-
-        .cta-section h2 {
-            font-size: 2.5rem;
-            font-weight: 700;
-            color: white;
-            margin-bottom: 1.5rem;
-            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
-        }
-
-        .cta-section p {
-            font-size: 1.2rem;
-            color: rgba(255, 255, 255, 0.9);
-            margin-bottom: 2rem;
-            max-width: 600px;
-            margin-left: auto;
-            margin-right: auto;
-        }
-
-        /* Estilos mejorados para los botones en la sección CTA */
-        .cta-section .btn {
-            padding: 1rem 2rem;
-            border-radius: 50px;
-            text-decoration: none;
-            font-weight: 600;
-            font-size: 1rem;
-            transition: all 0.3s ease;
-            border: 2px solid transparent;
-            display: inline-flex;
-            align-items: center;
-            gap: 0.5rem;
-            margin: 0.5rem;
-        }
-
-        .cta-section .btn-primary {
-            background: white;
-            color: var(--primary-color);
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
-            border: 2px solid white;
-        }
-
-        .cta-section .btn-primary:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
-            background: #f8f9fa;
-            color: var(--primary-color);
-        }
-
-        .cta-section .btn-secondary {
-            background: transparent;
-            color: white;
-            border: 2px solid white;
-        }
-
-        .cta-section .btn-secondary:hover {
-            background: white;
-            color: var(--primary-color);
-            transform: translateY(-2px);
-        }
-
-        /* Responsive para móviles */
-        @media (max-width: 768px) {
-            .cta-section h2 {
-                font-size: 2rem;
-            }
-
-            .cta-section p {
-                font-size: 1rem;
-                padding: 0 1rem;
-            }
-
-            .cta-section .btn {
-                width: 100%;
-                max-width: 300px;
-                justify-content: center;
-                margin: 0.5rem 0;
-            }
-        }
-
-        /* --- AJUSTES DE HEADER PARA BLOG --- */
-        #mobile-nav-toggle {
-            display: block;
-        }
-
-        .header-controls {
-            display: flex;
-            align-items: center;
-            gap: 1rem;
-        }
-
-        /* Estilo del botón de idioma */
-        #language-switcher {
-            background-color: var(--primary-color);
-            color: white;
-            border: none;
-            padding: 0.5rem 0.8rem;
-            border-radius: 5px;
-            cursor: pointer;
-            font-family: 'Poppins', sans-serif;
-            font-size: 0.9em;
-            transition: background-color 0.3s ease;
-        }
-
-        #language-switcher:hover {
-            background-color: var(--secondary-color);
-        }
-
-        /* Animación de Menú Mejorada */
-        #main-nav {
-            display: block;
-            /* Mantenlo como block para que la animación funcione */
-            opacity: 0;
-            visibility: hidden;
-            transform: translateY(-10px);
-            transition: opacity 0.3s ease, transform 0.3s ease, visibility 0s 0.3s;
-        }
-
-        #main-nav.active {
-            opacity: 1;
-            visibility: visible;
-            transform: translateY(0);
-            transition: opacity 0.3s ease, transform 0.3s ease, visibility 0s 0s;
-        }
-    </style>
 </head>
 
-<body>
-    <header id="main-header">
+<body class="blog-page">
+        <header id="main-header" class="al-nav is-at-top is-solid">
         <div class="container">
-            <a href="index.html" class="logo">
+            <a href="index.html#pre-hero-banner" class="logo">
                 <img src="./assets/imagenes/Logo/ciudad del rio propi_Mesa de trabajo 1-03.png"
-                    alt="Ciudad del Río Logo">
+                    alt="Ciudad del Río Logo" data-alt-es="Ciudad del Río Logo" data-alt-en="Ciudad del Río Logo"
+                    width="180" height="48" decoding="async">
             </a>
-            <nav id="main-nav">
-                <ul>
-                    <li><a href="./index.html#pre-hero-banner" data-lang-es="Inicio" data-lang-en="Home">Inicio</a></li>
-                    <li><a href="index.html#why-barranquilla" data-lang-es="¿Por qué Barranquilla?"
-                            data-lang-en="Why Barranquilla?">¿Por qué Barranquilla?</a></li>
-                    <li><a href="index.html#our-team" data-lang-es="Nosotros" data-lang-en="About Us">Nosotros</a></li>
-                    <li><a href="index.html#proyectos" data-lang-es="Proyectos" data-lang-en="Projects">Proyectos</a>
-                    </li>
-                    <li class="dropdown">
-                        <a href="#blog" class="dropdown-trigger">
-                            <span data-lang-es="Blog" data-lang-en="Blog">Blog</span>
-                            <i class="fas fa-chevron-down dropdown-arrow"></i>
-                        </a>
-                        <div class="dropdown-content">
-                            <a href="blog-proyectos-malecon.html"
-                                data-lang-es="Los 4 proyectos que transforman el Gran Malecón"
-                                data-lang-en="The 4 projects transforming the Gran Malecón">
-                                Los 4 proyectos que transforman el Gran Malecón
-                            </a>
-                            <a href="blog-invertir-barranquilla.html"
-                                data-lang-es="Por qué invertir en Barranquilla 2025"
-                                data-lang-en="Why invest in Barranquilla 2025">
-                                Por qué invertir en Barranquilla 2025
-                            </a>
-                        </div>
-                    </li>
-                    <li><a href="index.html#contact" data-lang-es="Contacto" data-lang-en="Contact">Contacto</a></li>
-                </ul>
-            </nav>
-            <div class="header-controls">
-                <div class="language-switcher-container">
-                    <button id="language-switcher" aria-label="Cambiar idioma">EN</button>
+            <nav id="main-nav" class="sr-only" aria-hidden="true"></nav>
+            <div class="al-nav-actions">
+                <div class="al-lang-header al-lang-desktop" role="group" aria-label="Idioma">
+                    <button type="button" class="al-lang-pill al-lang-pill-header is-active" data-lang-pick="es">ES</button>
+                    <button type="button" class="al-lang-pill al-lang-pill-header" data-lang-pick="en">EN</button>
                 </div>
-                <button id="mobile-nav-toggle" aria-label="Abrir menú">
-                    <i class="fas fa-bars"></i>
+                <button type="button" id="language-switcher" class="sr-only" aria-hidden="true" tabindex="-1">EN</button>
+                <button type="button" class="al-burger" id="al-burger" aria-label="Abrir menú"
+                    aria-expanded="false" aria-controls="al-drawer">
+                    <span class="al-burger-line"></span>
+                    <span class="al-burger-line"></span>
+                    <span class="al-burger-line"></span>
                 </button>
             </div>
         </div>
     </header>
 
-    <section class="blog-header">
+    <div id="al-drawer" class="al-drawer" aria-hidden="true" role="dialog" aria-label="Menú de navegación">
+        <button type="button" class="al-drawer-close" id="al-drawer-close"
+            aria-label="Cerrar menú" data-aria-label-es="Cerrar menú" data-aria-label-en="Close menu">
+            <i class="fas fa-times" aria-hidden="true"></i>
+        </button>
+        <div class="al-drawer-inner">
+            <ul class="al-drawer-links">
+                <li><a href="index.html#pre-hero-banner" data-lang-es="Inicio" data-lang-en="Home">Inicio</a></li>
+                <li><a href="index.html#why-barranquilla" data-lang-es="¿Por qué Barranquilla?"
+                        data-lang-en="Why Barranquilla?">¿Por qué Barranquilla?</a></li>
+                <li><a href="index.html#our-team" data-lang-es="Nosotros" data-lang-en="About Us">Nosotros</a></li>
+                <li><a href="index.html#proyectos" data-lang-es="Proyectos" data-lang-en="Projects">Proyectos</a></li>
+                <li class="al-drawer-item--blog">
+                    <button type="button" class="al-drawer-blog-toggle" aria-expanded="false"
+                        aria-controls="al-drawer-blog-list" data-aria-label-es="Abrir menú de blog"
+                        data-aria-label-en="Open blog menu">
+                        <span data-lang-es="Blog" data-lang-en="Blog">Blog</span>
+                        <span class="al-drawer-blog-chevron" aria-hidden="true"><i class="fas fa-chevron-right"></i></span>
+                    </button>
+                    <ul class="al-drawer-sub" id="al-drawer-blog-list">
+                        <li><a href="index.html#blog" data-lang-es="Ver todos los artículos"
+                                data-lang-en="View all articles">Ver todos los artículos</a></li>
+                        <li><a href="blog-proyectos-malecon.html" class="active" data-lang-es="Los 4 proyectos del Gran Malecón"
+                                data-lang-en="The 4 Gran Malecón projects">Los 4 proyectos del Gran Malecón</a></li>
+                        <li><a href="blog-invertir-barranquilla.html" data-lang-es="Invertir en Barranquilla 2025"
+                                data-lang-en="Invest in Barranquilla 2025">Invertir en Barranquilla 2025</a></li>
+                    </ul>
+                </li>
+                <li><a href="index.html#contact" data-lang-es="Contacto" data-lang-en="Contact">Contacto</a></li>
+            </ul>
+            <div class="al-drawer-foot">
+                <div class="al-drawer-lang">
+                    <button type="button" class="al-lang-btn" aria-expanded="false" aria-label="Seleccionar idioma">
+                        <i class="fas fa-globe" aria-hidden="true"></i>
+                    </button>
+                    <div class="al-lang-menu" hidden>
+                        <button type="button" class="al-lang-pill is-active" data-lang-pick="es">ES</button>
+                        <button type="button" class="al-lang-pill" data-lang-pick="en">EN</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <button type="button" class="al-nav-peek" aria-label="Mostrar barra de navegación" aria-hidden="true">
+        <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+            <path
+                d="M12 5C7 5 2.73 8.11 1 12.5 2.73 16.89 7 20 12 20s9.27-3.11 11-7.5C21.27 8.11 17 5 12 5zm0 11.5a4 4 0 1 1 0-8 4 4 0 0 1 0 8zm0-6.5a2.5 2.5 0 1 0 0 5 2.5 2.5 0 0 0 0-5z" />
+        </svg>
+    </button>
+
+
+    <section class="blog-page-header">
+        <img src="./assets/imagenes/Blog/Blog_1.jpeg" alt="" class="blog-page-header__media" width="1600"
+            height="900" decoding="async" fetchpriority="high">
+        <div class="blog-page-header__overlay" aria-hidden="true"></div>
         <div class="container">
             <h1 data-lang-es="Los 4 proyectos que están transformando el Gran Malecón de Barranquilla"
                 data-lang-en="The 4 Projects Transforming Barranquilla's Gran Malecón">Los 4 proyectos que están
@@ -320,8 +115,8 @@
         </div>
     </section>
 
-    <main class="blog-content">
-        <a href="index.html" class="back-to-home"><i class="fas fa-arrow-left"></i> <span
+    <main class="blog-article">
+        <a href="index.html#blog" class="back-to-home"><i class="fas fa-arrow-left"></i> <span
                 data-lang-es="Volver al inicio" data-lang-en="Back to home">Volver al inicio</span></a>
 
         <p data-lang-es="El Gran Malecón de Barranquilla se ha convertido en el ícono urbano más importante de la ciudad y en un motor de inversión y desarrollo. Frente al majestuoso río Magdalena, hoy encontramos proyectos que no solo cambian el paisaje, sino que abren oportunidades de crecimiento para residentes, turistas e inversionistas."
@@ -332,14 +127,13 @@
         </p>
 
         <img src="./assets/imagenes/Gran Malecon/Malecon_vistas(3).png" alt="Vista panorámica del Gran Malecón"
-            class="blog-image-full">
+            class="blog-image-full" loading="lazy" decoding="async">
 
         <h2 data-lang-es="1. Vive Río" data-lang-en="1. Vive Río">1. Vive Río</h2>
         <p data-lang-es="Un espacio turístico y gastronómico que atrae a miles de visitantes cada semana. Sus restaurantes, cafés y zonas de encuentro han posicionado el Malecón como un punto de referencia en Colombia."
             data-lang-en="A tourist and gastronomic space that attracts thousands of visitors every week. Its restaurants, cafes, and meeting areas have positioned the Malecón as a landmark in Colombia.">
             Un espacio turístico y gastronómico que atrae a miles de visitantes cada semana. Sus restaurantes, cafés y
             zonas de encuentro han posicionado el Malecón como un punto de referencia en Colombia.</p>
-        <p>
 
         <h2>
             <a href="https://www.malecon72.com/" target="_blank" rel="noopener" data-lang-es="2. Malecón 72"
@@ -351,10 +145,9 @@
             data-lang-en="One of the most modern residential projects facing the river. It combines contemporary architectural design, amenities designed for urban life, and a privileged location in Ciudad del Río.">
             Uno de los proyectos residenciales más modernos frente al río. Combina diseño arquitectónico contemporáneo,
             amenities pensados para la vida urbana y una ubicación privilegiada en la Ciudad del Río.</p>
-        <p>
 
-            <img src="./assets/imagenes/Vistas/Malecon 72.png" alt="Render del proyecto Malecón 72"
-                class="blog-image-full">
+        <img src="./assets/imagenes/Vistas/Malecon 72.png" alt="Render del proyecto Malecón 72"
+            class="blog-image-full" loading="lazy" decoding="async">
 
         <h2 data-lang-es="3. Rivatta del Río" data-lang-en="3. Rivatta del Río">3. Rivatta del Río</h2>
         <p data-lang-es="Proyecto residencial que ofrece exclusividad y estilo de vida frente al río. Su diseño, sus zonas sociales y su cercanía al Gran Malecón lo convierten en una de las opciones más atractivas para vivir o invertir en Barranquilla."
@@ -362,7 +155,7 @@
             Proyecto residencial que ofrece exclusividad y estilo de vida frente al río. Su diseño, sus zonas sociales y
             su cercanía al Gran Malecón lo convierten en una de las opciones más atractivas para vivir o invertir en
             Barranquilla.</p>
-        <p>
+
         <h2 data-lang-es="4. Río Living" data-lang-en="4. Río Living">4. Río Living</h2>
         <p data-lang-es="Una propuesta que conecta la vida urbana con la tranquilidad del Magdalena. Este proyecto se enfoca en brindar confort y una experiencia residencial rodeada de vistas únicas y espacios modernos."
             data-lang-en="A proposal that connects urban life with the tranquility of the Magdalena River. This project focuses on providing comfort and a residential experience surrounded by unique views and modern spaces.">
@@ -379,6 +172,33 @@
             premiados internacionalmente y una visión urbana integral hacen del Gran Malecón el epicentro del nuevo
             Barranquilla.</p>
     </main>
+
+    <section id="mapa-lotes" class="section-bg blog-map-section">
+        <div class="container">
+            <div class="m72-top-bar m72-top-bar--section">
+                <p class="m72-top-bar__title"
+                    data-lang-es="CONOCE EL NUEVO PROYECTO EN EL GRAN MALECÓN: MALECÓN 72"
+                    data-lang-en="DISCOVER THE NEW PROJECT ON THE GRAN MALECÓN: MALECÓN 72">
+                    CONOCE EL NUEVO PROYECTO EN EL GRAN MALECÓN: MALECÓN 72</p>
+                <a href="https://www.malecon72.com/" class="m72-top-bar__btn m72-button" target="_blank"
+                    rel="noopener noreferrer" data-lang-es="Ver Detalles" data-lang-en="View Details">Ver Detalles</a>
+            </div>
+            <h2 data-lang-es="LOS PROYECTOS DE LA CIUDAD DEL RIO"
+                data-lang-en="PROJECTS IN CIUDAD DEL RÍO">LOS PROYECTOS DE LA CIUDAD DEL RIO</h2>
+            <p class="lead text-center"
+                data-lang-es="Explora la distribución y disponibilidad de lotes dentro del plan maestro de Ciudad del Río a través de nuestro mapa interactivo."
+                data-lang-en="Explore the distribution and availability of lots within the Ciudad del Río master plan through our interactive map.">
+                Explora la distribución y disponibilidad de lotes dentro del plan maestro de Ciudad del Río a través
+                de nuestro mapa interactivo.
+            </p>
+            <div class="map-container">
+                <iframe src="https://www.google.com/maps/d/embed?mid=19NtLexJzNf_GS-IdfO2NAr4zgeesCsk&ehbc=2E312F"
+                    width="100%" height="500" style="border:0;" allowfullscreen="" loading="lazy"
+                    referrerpolicy="no-referrer-when-downgrade" title="Mapa Ciudad del Río">
+                </iframe>
+            </div>
+        </div>
+    </section>
 
     <section class="cta-section">
         <div class="container">
@@ -405,11 +225,12 @@
         </div>
     </section>
 
-    <footer id="main-footer">
+    <footer id="main-footer" class="al-sec-sheet al-sec-sheet--footer">
         <div class="container">
             <a href="index.html" class="footer-logo">
-                <img src="./assets/imagenes/Logo/ciudad del rio propi (negativo)_Mesa de trabajo 1-03_Mesa de trabajo 1-03.png"
-                    alt="Ciudad del Río Logo Footer">
+                <img src="./assets/imagenes/Logo/ciudad del rio propi (negativo)_Mesa de trabajo 1-01.png"
+                    alt="Ciudad del Río Logo Footer" data-alt-es="Ciudad del Río Logo Footer"
+                    data-alt-en="Ciudad del Río Logo Footer">
             </a>
             <div class="container-footer">
                 <p>© <span id="current-year"></span> <span data-lang-es="Ciudad del Río. Desarrollado por"
@@ -439,47 +260,44 @@
         </div>
     </footer>
 
-    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
-    <script src="js/script.js"></script>
+        <script src="js/scroll-anchor.js?v=20260207c" defer></script>
+    <script src="js/al-nav.js?v=20260208r" defer></script>
+    <script src="js/script.js?v=20260207c" defer></script>
     <script>
         document.addEventListener('DOMContentLoaded', () => {
-            // Script de funcionalidad básica (AOS, año)
-            document.getElementById('current-year').textContent = new Date().getFullYear();
-            AOS.init({ duration: 900, once: true, offset: 80 });
-
-            // --- SCRIPT DE TRADUCCIÓN COMPLETO ---
             const langSwitcher = document.getElementById('language-switcher');
-            let currentLang = 'es';
-
+            let currentLang = document.documentElement.lang || 'es';
+            if (!langSwitcher) return;
             const setLanguage = (lang) => {
                 currentLang = lang;
                 document.documentElement.lang = lang;
-
                 document.querySelectorAll('[data-lang-es]').forEach(el => {
                     const text = el.getAttribute(`data-lang-${lang}`);
                     if (text) el.textContent = text;
                 });
-
                 document.querySelectorAll('[data-alt-es]').forEach(el => {
                     const altText = el.getAttribute(`data-alt-${lang}`);
                     if (altText) el.alt = altText;
                 });
-
-                if (lang === 'es') {
-                    langSwitcher.textContent = 'EN';
-                    langSwitcher.setAttribute('aria-label', 'Cambiar idioma a Inglés');
-                } else {
-                    langSwitcher.textContent = 'ES';
-                    langSwitcher.setAttribute('aria-label', 'Switch language to Spanish');
-                }
+                document.querySelectorAll('[data-aria-label-es]').forEach(el => {
+                    const labelText = el.getAttribute(`data-aria-label-${lang}`);
+                    if (labelText) el.setAttribute('aria-label', labelText);
+                });
+                langSwitcher.textContent = lang === 'es' ? 'EN' : 'ES';
+                document.querySelectorAll('.al-lang-pill[data-lang-pick]').forEach((pill) => {
+                    pill.classList.toggle('is-active', pill.getAttribute('data-lang-pick') === lang);
+                });
             };
-
-            langSwitcher.addEventListener('click', () => {
-                const newLang = currentLang === 'es' ? 'en' : 'es';
-                setLanguage(newLang);
+            langSwitcher.addEventListener('click', () => setLanguage(currentLang === 'es' ? 'en' : 'es'));
+            document.querySelectorAll('.al-lang-pill[data-lang-pick]').forEach((pill) => {
+                pill.addEventListener('click', () => {
+                    const pick = pill.getAttribute('data-lang-pick');
+                    if (pick !== currentLang) setLanguage(pick);
+                });
             });
-
-            setLanguage(currentLang); // Aplicar idioma inicial
+            const y = document.getElementById('current-year');
+            if (y) y.textContent = new Date().getFullYear();
+            setLanguage(currentLang);
         });
     </script>
     <!-- Start of HubSpot Embed Code -->

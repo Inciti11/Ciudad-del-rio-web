@@ -1,0 +1,95 @@
+/* WhatsApp flotante — círculo + burbuja (referencia ALRÍO) */
+.whatsapp-float.al-wa {
+    position: fixed;
+    right: calc(var(--pad) - 9px);
+    bottom: 132px;
+    z-index: 600;
+    width: 46px;
+    height: 46px;
+    padding: 0;
+    background: transparent;
+    border-radius: 0;
+    box-shadow: none;
+    text-decoration: none;
+    overflow: visible;
+}
+
+.al-wa-btn {
+    position: relative;
+    z-index: 2;
+    width: 46px;
+    height: 46px;
+    border-radius: 50%;
+    background: var(--cdr-wa-green, #25d366);
+    color: #fff;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 26px;
+    line-height: 1;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+    transition: transform 0.25s ease;
+}
+
+.al-wa-msg {
+    position: absolute;
+    right: 38px;
+    top: 50%;
+    transform: translate(18px, -50%) scale(0.92);
+    opacity: 0;
+    pointer-events: none;
+    height: 40px;
+    padding: 0 22px 0 16px;
+    display: inline-flex;
+    align-items: center;
+    border-radius: var(--btn-radius, 999px);
+    background: var(--cdr-bone, #f4efe6);
+    color: var(--cdr-ink, #142334);
+    font-family: var(--font-body);
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 0.06em;
+    border: 1px solid rgba(20, 35, 52, 0.12);
+    text-transform: uppercase;
+    white-space: nowrap;
+    box-shadow: 0 8px 18px rgba(0, 0, 0, 0.14), 0 2px 5px rgba(0, 0, 0, 0.08);
+    transition: opacity 0.45s cubic-bezier(0.22, 0.61, 0.36, 1),
+        transform 0.45s cubic-bezier(0.22, 0.61, 0.36, 1);
+}
+
+.al-wa-msg.is-on {
+    opacity: 1;
+    transform: translate(0, -50%) scale(1);
+}
+
+.whatsapp-float.al-wa:hover .al-wa-btn {
+    transform: scale(1.04);
+}
+
+@media (max-width: 680px) {
+    .whatsapp-float.al-wa {
+        right: calc(var(--pad) - 10px);
+        bottom: 86px;
+        width: 42px;
+        height: 42px;
+    }
+
+    .al-wa-btn {
+        width: 42px;
+        height: 42px;
+        font-size: 24px;
+    }
+
+    .al-wa-msg {
+        right: 34px;
+        height: 36px;
+        font-size: 11px;
+        padding: 0 18px 0 14px;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .al-wa-msg {
+        transition: none;
+    }
+}

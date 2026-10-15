@@ -1,10 +1,12 @@
 document.addEventListener('DOMContentLoaded', () => {
-    // Initialize AOS
-    AOS.init({
-        duration: 900,
-        easing: 'ease-out-cubic',
-        once: true,
-        offset: 80
+    // Lazy-load imágenes fuera del hero y header
+    document.querySelectorAll('img:not([loading])').forEach((img) => {
+        if (img.closest('#pre-hero-banner') || img.closest('#main-header') || img.closest('.zoomed-container')
+            || img.closest('.blog-page-header') || img.classList.contains('blog-image-full')) {
+            return;
+        }
+        img.loading = 'lazy';
+        img.decoding = 'async';
     });
 
     // Cache DOM Elements
@@ -14,7 +16,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const mobileNavToggle = document.getElementById('mobile-nav-toggle');
     const body = document.body;
     const preHeroBanner = document.getElementById('pre-hero-banner');
-    const navLinksScroll = document.querySelectorAll('#main-nav a[href^="#"], .scroll-down[href^="#"], .logo[href^="#"], .footer-logo[href^="#"]');
+    const navLinksScroll = document.querySelectorAll('#main-nav a[href^="#"], .al-drawer-links > li > a[href^="#"], .al-drawer-sub a[href^="#"], .scroll-down[href^="#"], .logo[href^="#"], .footer-logo[href^="#"]');
     const sections = document.querySelectorAll('section[id]');
     const yearSpan = document.getElementById('current-year');
     const zoomedContainer = document.querySelector('.zoomed-container');
@@ -39,14 +41,42 @@ document.addEventListener('DOMContentLoaded', () => {
             mainNav.style.top = currentHeightValue;
             mainNav.style.maxHeight = `calc(100vh - ${currentHeightValue})`;
         }
-        if (preHeroBanner) {
+        if (preHeroBanner && !preHeroBanner.classList.contains('cdr-hero')) {
             preHeroBanner.style.marginTop = currentHeightValue;
+        } else if (preHeroBanner) {
+            preHeroBanner.style.marginTop = '0';
         }
     }
 
-    function handleScroll() {
+    let sectionsCache = null;
+    let lastActiveSectionId = null;
+    let scrollRafPending = false;
+
+    function invalidateSectionsCache() {
+        sectionsCache = null;
+    }
+
+    function buildSectionsCache() {
+        const currentHeaderHeight = parseInt(getCssVariable('--header-height-current') || '70', 10);
+        const vh = window.innerHeight;
+        sectionsCache = Array.from(sections).map((current) => {
+            const sectionTop = current.offsetTop;
+            const sectionHeight = current.offsetHeight;
+            return {
+                id: current.getAttribute('id'),
+                trigger: sectionTop - currentHeaderHeight - vh * 0.2,
+                end: sectionTop + sectionHeight - currentHeaderHeight - vh * 0.5,
+            };
+        });
+    }
+
+    function handleScrollCore() {
         const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
-        const shouldBeScrolled = scrollTop > 50;
+        const heroOverlay =
+            preHeroBanner &&
+            preHeroBanner.classList.contains('cdr-hero') &&
+            scrollTop < window.innerHeight * 0.72;
+        const shouldBeScrolled = scrollTop > 50 && !heroOverlay;
         let stateChanged = false;
 
         if (shouldBeScrolled !== header.classList.contains('scrolled')) {
@@ -56,12 +86,26 @@ document.addEventListener('DOMContentLoaded', () => {
 
         if (stateChanged) {
             updateHeaderState();
+            invalidateSectionsCache();
         }
-        activateNavLink();
+        activateNavLink(scrollTop);
+    }
+
+    function handleScroll() {
+        if (scrollRafPending) return;
+        scrollRafPending = true;
+        requestAnimationFrame(() => {
+            handleScrollCore();
+            scrollRafPending = false;
+        });
     }
 
     // --- Mobile Navigation ---
     function toggleMobileNav() {
+        if (window.AlNav) {
+            window.AlNav.toggleMenu();
+            return;
+        }
         if (!mainNav || !mobileNavToggle) return;
         const isNavActive = mainNav.classList.toggle('active');
         mobileNavToggle.classList.toggle('active', isNavActive);
@@ -77,21 +121,24 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     }
 
+    function closeMobileNav() {
+        if (window.AlNav) {
+            window.AlNav.closeMenu();
+            return;
+        }
+        if (mainNav && mainNav.classList.contains('active')) {
+            toggleMobileNav();
+        }
+    }
+
     // --- Smooth Scrolling & Active Link Highlighting ---
-    function activateNavLink() {
-        let currentHeaderHeight = parseInt(getCssVariable('--header-height-current') || '70', 10);
-        let scrollY = window.pageYOffset;
+    function activateNavLink(scrollY) {
+        if (!sectionsCache) buildSectionsCache();
         let currentSectionId = null;
 
-        sections.forEach(current => {
-            const sectionTop = current.offsetTop;
-            const sectionHeight = current.offsetHeight;
-            // Ajustar puntos de activación para que el enlace se active un poco antes de que la sección llegue exactamente al borde superior
-            const triggerPoint = sectionTop - currentHeaderHeight - window.innerHeight * 0.2; // Más cerca de la parte superior
-            const endPoint = sectionTop + sectionHeight - currentHeaderHeight - window.innerHeight * 0.5; // Más abajo
-
-            if (scrollY >= triggerPoint && scrollY < endPoint) {
-                currentSectionId = current.getAttribute('id');
+        sectionsCache.forEach((entry) => {
+            if (scrollY >= entry.trigger && scrollY < entry.end) {
+                currentSectionId = entry.id;
             }
         });
 
@@ -106,6 +153,9 @@ document.addEventListener('DOMContentLoaded', () => {
             currentSectionId = 'pre-hero-banner';
         }
 
+        if (currentSectionId === lastActiveSectionId) return;
+        lastActiveSectionId = currentSectionId;
+
         navLinksScroll.forEach(link => {
             const linkHref = link.getAttribute('href');
             const isLogo = link.classList.contains('logo') || link.classList.contains('footer-logo');
@@ -117,7 +167,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     link.classList.toggle('active', currentSectionId === 'pre-hero-banner');
                 }
                 // Para los enlaces normales del nav, activar si coincide el ID
-                else if (!isLogo && link.closest('#main-nav')) {
+                else if (!isLogo && (link.closest('#main-nav') || link.closest('.al-drawer-links'))) {
                     link.classList.toggle('active', targetId === currentSectionId);
                 }
                 // Para otros enlaces (como scroll-down), no aplicar clase 'active' visualmente
@@ -137,8 +187,8 @@ document.addEventListener('DOMContentLoaded', () => {
         // Si no es un enlace interno (#...) o es el toggle del menú, no hacer smooth scroll
         if (!targetHref || !targetHref.startsWith('#') || this.isEqualNode(mobileNavToggle)) {
             // Si es un enlace externo y el menú móvil está abierto, ciérralo
-            if (mainNav.classList.contains('active') && !this.isEqualNode(mobileNavToggle)) {
-                toggleMobileNav();
+            if (!this.isEqualNode(mobileNavToggle)) {
+                closeMobileNav();
             }
             return; // Permite el comportamiento por defecto (ir a URL externa o no hacer nada)
         }
@@ -150,20 +200,20 @@ document.addEventListener('DOMContentLoaded', () => {
             let currentHeaderHeight = parseInt(getCssVariable('--header-height-current') || '70', 10);
             let offsetTop = targetElement.offsetTop;
             // Para el primer banner, ir al inicio (0). Para otros, ajustar por altura del header.
-            let scrollToPosition = (targetHref === '#pre-hero-banner') ? 0 : offsetTop - currentHeaderHeight + 1;
+            let scrollToPosition = typeof window.getCdrScrollTop === 'function'
+                ? window.getCdrScrollTop(targetHref, targetElement)
+                : ((targetHref === '#pre-hero-banner') ? 0 : offsetTop - currentHeaderHeight + 1);
 
             window.scrollTo({ top: scrollToPosition, behavior: 'smooth' });
 
             // Cerrar menú móvil si está activo después de hacer clic en un enlace interno
-            if (mainNav.classList.contains('active')) {
-                toggleMobileNav();
-            }
+            closeMobileNav();
         }
     }
 
     // --- Gallery Slider & Zoom ---
     function initializeGallerySliders() {
-        const galleryItems = document.querySelectorAll('.gallery-item');
+        const galleryItems = document.querySelectorAll('.gallery-item, .section-media-zoom');
         // Asegurarse de que los elementos de zoom existan antes de continuar
         if (!zoomedContainer || !zoomedImageEl || !closeZoomBtn) {
             console.warn("Elementos del zoom no encontrados. Funcionalidad de zoom desactivada.");
@@ -305,13 +355,15 @@ document.addEventListener('DOMContentLoaded', () => {
     setFooterYear();     // Poner el año actual en el footer
 
     // --- Global Event Listeners ---
-    if (mobileNavToggle && mainNav) {
+    if (mobileNavToggle && mainNav && !document.getElementById('al-burger')) {
         mobileNavToggle.addEventListener('click', toggleMobileNav);
     }
     navLinksScroll.forEach(link => {
         link.addEventListener('click', handleNavLinkClick);
     });
-    window.addEventListener('scroll', handleScroll, { passive: true }); // Optimización para scroll
+    window.addEventListener('scroll', handleScroll, { passive: true });
+    window.addEventListener('resize', invalidateSectionsCache, { passive: true });
+    window.addEventListener('load', invalidateSectionsCache, { once: true });
 
     // Recalcular en resize (con debounce)
     let resizeTimer;
@@ -562,7 +614,7 @@ document.addEventListener('DOMContentLoaded', () => {
     document.addEventListener('DOMContentLoaded', function () {
         console.log('DOM cargado, inicializando carrusel...');
 
-        // Esperar un poco para asegurar que AOS y otros scripts hayan terminado
+        // Esperar un poco para asegurar que animaciones de scroll hayan terminado
         setTimeout(function () {
             initializeDevelopmentCarousel();
         }, 500);

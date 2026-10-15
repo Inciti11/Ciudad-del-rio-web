@@ -4,6 +4,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description"
+        content="Ciudad del Río en Barranquilla: proyectos inmobiliarios frente al río Magdalena, inversión y calidad de vida en el Gran Malecón.">
+    <meta name="theme-color" content="#142334">
     <!-- El title también necesitará traducción si lo deseas -->
     <title data-lang-es="Ciudad del Río - Barranquilla" data-lang-en="Ciudad del Río - Barranquilla">Ciudad del Río -
         Barranquilla</title>
@@ -11,14 +14,16 @@
     <!-- Favicon -->
     <link rel="icon" type="image/png" href="./assets/imagenes/Logo/ciudad del rio propi-02.png">
 
+    <link rel="preload" href="./assets/Font/DREAM%20GLORY.ttf" as="font" type="font/ttf" crossorigin>
+    <link rel="preload" as="image" href="./assets/imagenes/Vistas/Gran%20Malecon.png" fetchpriority="high">
+    <link rel="dns-prefetch" href="https://unpkg.com">
+    <link rel="dns-prefetch" href="https://js.hs-scripts.com">
+
     <!-- Google Fonts - Poppins -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap"
         rel="stylesheet">
-
-    <!-- AOS Library CSS -->
-    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
 
     <!-- Font Awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
@@ -26,7 +31,14 @@
         crossorigin="anonymous" referrerpolicy="no-referrer" />
 
     <!-- === TU HOJA DE ESTILOS PERSONALIZADA === -->
-    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/style.css?v=20260210f">
+    <link rel="stylesheet" href="css/al-nav.css?v=20260208r">
+    <link rel="stylesheet" href="css/al-sections.css?v=20260210b">
+    <link rel="stylesheet" href="css/cdr-hero.css?v=20260208g">
+    <link rel="stylesheet" href="css/cdr-wa.css?v=20260210f">
+    <link rel="stylesheet" href="css/al-scroll.css?v=20260210e">
+    <link rel="stylesheet" href="css/proj-spotlight.css?v=20260210d">
+    <link rel="stylesheet" href="css/alrio-promo.css?v=20260210u">
 
     <!-- === ESTILOS PARA EL BOTÓN DE IDIOMA (Añadir a style.css o aquí) === -->
     <style>
@@ -64,14 +76,15 @@
 <body>
 
     <!-- Header -->
-    <header id="main-header">
+    <header id="main-header" class="al-nav is-at-top">
         <div class="container">
             <a href="#pre-hero-banner" class="logo">
                 <!-- El alt de la imagen también debe ser traducible -->
                 <img src="./assets/imagenes/Logo/ciudad del rio propi_Mesa de trabajo 1-03.png"
-                    alt="Ciudad del Río Logo" data-alt-es="Ciudad del Río Logo" data-alt-en="Ciudad del Río Logo">
+                    alt="Ciudad del Río Logo" data-alt-es="Ciudad del Río Logo" data-alt-en="Ciudad del Río Logo"
+                    width="180" height="48" decoding="async" fetchpriority="high">
             </a>
-            <nav id="main-nav">
+            <nav id="main-nav" aria-label="Navegación principal">
                 <ul>
                     <li><a href="#pre-hero-banner" class="active" data-lang-es="Inicio" data-lang-en="Home">Inicio</a>
                     </li>
@@ -104,28 +117,77 @@
                 </ul>
             </nav>
 
-            <!-- === ELEMENTO MOVIDO AQUÍ === -->
-            <!-- Opción 1: Usar un div como contenedor (recomendado para estilos) -->
-            <div class="language-switcher-container">
-                <button id="language-switcher" aria-label="Cambiar idioma a Inglés">EN</button>
+            <div class="al-nav-actions">
+                <div class="al-lang-header al-lang-desktop" role="group" aria-label="Idioma">
+                    <button type="button" class="al-lang-pill al-lang-pill-header is-active" data-lang-pick="es">ES</button>
+                    <button type="button" class="al-lang-pill al-lang-pill-header" data-lang-pick="en">EN</button>
+                </div>
+                <button type="button" id="language-switcher" class="sr-only" aria-hidden="true" tabindex="-1">EN</button>
+                <button type="button" class="al-burger" id="al-burger" aria-label="Abrir menú"
+                    aria-expanded="false" aria-controls="al-drawer">
+                    <span class="al-burger-line"></span>
+                    <span class="al-burger-line"></span>
+                    <span class="al-burger-line"></span>
+                </button>
             </div>
-
-            <!-- Opción 2: Sólo el botón (si no necesitas un div contenedor) -->
-            <!-- <button id="language-switcher" aria-label="Cambiar idioma a Inglés">EN</button> -->
-            <!-- ============================ -->
-
-            <button id="mobile-nav-toggle" aria-label="Abrir menú" aria-expanded="false" aria-controls="main-nav">
-                <i class="fas fa-bars"></i>
-                <span class="sr-only" data-lang-es="Abrir/Cerrar menú" data-lang-en="Open/Close menu">Abrir/Cerrar
-                    menú</span>
-            </button>
 
         </div>
 
     </header>
 
+    <div id="al-drawer" class="al-drawer" aria-hidden="true" role="dialog" aria-label="Menú de navegación">
+        <button type="button" class="al-drawer-close" id="al-drawer-close"
+            aria-label="Cerrar menú" data-aria-label-es="Cerrar menú" data-aria-label-en="Close menu">
+            <i class="fas fa-times" aria-hidden="true"></i>
+        </button>
+        <div class="al-drawer-inner">
+            <ul class="al-drawer-links">
+                <li><a href="#pre-hero-banner" data-lang-es="Inicio" data-lang-en="Home">Inicio</a></li>
+                <li><a href="#why-barranquilla" data-lang-es="¿Por qué Barranquilla?"
+                        data-lang-en="Why Barranquilla?">¿Por qué Barranquilla?</a></li>
+                <li><a href="#our-team" data-lang-es="Nosotros" data-lang-en="About Us">Nosotros</a></li>
+                <li><a href="#proyectos" data-lang-es="Proyectos" data-lang-en="Projects">Proyectos</a></li>
+                <li class="al-drawer-item--blog">
+                    <button type="button" class="al-drawer-blog-toggle" aria-expanded="false"
+                        aria-controls="al-drawer-blog-list" data-aria-label-es="Abrir menú de blog"
+                        data-aria-label-en="Open blog menu">
+                        <span data-lang-es="Blog" data-lang-en="Blog">Blog</span>
+                        <span class="al-drawer-blog-chevron" aria-hidden="true"><i class="fas fa-chevron-right"></i></span>
+                    </button>
+                    <ul class="al-drawer-sub" id="al-drawer-blog-list">
+                        <li><a href="#blog" data-lang-es="Ver todos los artículos"
+                                data-lang-en="View all articles">Ver todos los artículos</a></li>
+                        <li><a href="blog-proyectos-malecon.html" data-lang-es="Los 4 proyectos del Gran Malecón"
+                                data-lang-en="The 4 Gran Malecón projects">Los 4 proyectos del Gran Malecón</a></li>
+                        <li><a href="blog-invertir-barranquilla.html" data-lang-es="Invertir en Barranquilla 2025"
+                                data-lang-en="Invest in Barranquilla 2025">Invertir en Barranquilla 2025</a></li>
+                    </ul>
+                </li>
+                <li><a href="#contact" data-lang-es="Contacto" data-lang-en="Contact">Contacto</a></li>
+            </ul>
+            <div class="al-drawer-foot">
+                <div class="al-drawer-lang">
+                    <button type="button" class="al-lang-btn" aria-expanded="false" aria-label="Seleccionar idioma">
+                        <i class="fas fa-globe" aria-hidden="true"></i>
+                    </button>
+                    <div class="al-lang-menu" hidden>
+                        <button type="button" class="al-lang-pill is-active" data-lang-pick="es">ES</button>
+                        <button type="button" class="al-lang-pill" data-lang-pick="en">EN</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <button type="button" class="al-nav-peek" aria-label="Mostrar barra de navegación" aria-hidden="true">
+        <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+            <path
+                d="M12 5C7 5 2.73 8.11 1 12.5 2.73 16.89 7 20 12 20s9.27-3.11 11-7.5C21.27 8.11 17 5 12 5zm0 11.5a4 4 0 1 1 0-8 4 4 0 0 1 0 8zm0-6.5a2.5 2.5 0 1 0 0 5 2.5 2.5 0 0 0 0-5z" />
+        </svg>
+    </button>
+
     <!-- Pre-Hero Banner Section -->
-    <section id="pre-hero-banner">
+    <section id="pre-hero-banner" class="cdr-hero">
         <div class="background-slider">
             <div class="slide"></div>
             <div class="slide"></div>
@@ -135,47 +197,50 @@
             <div class="slide"></div>
             <div class="slide"></div>
         </div>
-        <div class="banner-overlay"></div>
-        <div class="overlay-banner">
-            <div class="overlay-banner-content">
-
-                <div class="overlay-text">
-                    <h3 data-lang-es="CONOCE EL NUEVO PROYECTO EN EL GRAN MALECÓN: MALECÓN 72"
-                        data-lang-en="DISCOVER THE NEW PROJECT ON GRAN MALECÓN: MALECÓN 72">
-                        CONOCE EL NUEVO PROYECTO EN EL GRAN MALECÓN: MALECÓN 72
-                    </h3>
-                    <!-- Eliminar el párrafo <p> completamente -->
+        <div class="banner-overlay cdr-hero-veil" aria-hidden="true"></div>
+        <div class="cdr-hero-in">
+            <aside class="cdr-hero-m72-bar cdr-hero-text-in" aria-label="Malecón 72">
+                <div class="m72-top-bar">
+                    <p class="m72-top-bar__title"
+                        data-lang-es="CONOCE EL NUEVO PROYECTO EN EL GRAN MALECÓN: MALECÓN 72"
+                        data-lang-en="DISCOVER THE NEW PROJECT ON THE GRAN MALECÓN: MALECÓN 72">
+                        CONOCE EL NUEVO PROYECTO EN EL GRAN MALECÓN: MALECÓN 72</p>
+                    <a href="https://www.malecon72.com/" class="m72-top-bar__btn m72-button" target="_blank"
+                        rel="noopener noreferrer" data-lang-es="Ver Detalles" data-lang-en="View Details">Ver
+                        Detalles</a>
                 </div>
-
-                <div class="overlay-action">
-                    <a href="#contact" class="overlay-btn" data-lang-es="Ver Detalles" data-lang-en="View Details">
-                        Ver Detalles
-                    </a>
+            </aside>
+            <div class="cdr-hero-main">
+                <div class="cdr-hero-body">
+                    <p class="cdr-hero-location cdr-hero-text-in" data-lang-es="GRAN MALECÓN DEL RÍO"
+                        data-lang-en="GRAN MALECÓN OF THE RIVER">GRAN MALECÓN DEL RÍO</p>
+                    <img src="./assets/imagenes/Logo/ciudad del rio propi (negativo)_Mesa de trabajo 1-01.png"
+                        alt="Ciudad del Río" class="cdr-hero-logo cdr-hero-logo-in" data-alt-es="Ciudad del Río"
+                        data-alt-en="Ciudad del Río" width="360" height="100" decoding="async" fetchpriority="high">
+                    <p class="lead cdr-hero-lead cdr-hero-text-in"
+                        data-lang-es="Barranquilla mira al río Magdalena con un ambicioso proyecto de renovación urbana"
+                        data-lang-en="Barranquilla looks towards the Magdalena River with an ambitious urban renewal project">
+                        Barranquilla mira al río Magdalena con un ambicioso proyecto de renovación urbana</p>
+                    <div class="cdr-hero-btn-row cdr-hero-text-in">
+                        <a href="https://share.hsforms.com/16csbYRBZRVGzUW5Bt8NSag560hs" class="cdr-hero-cta"
+                            target="_blank" rel="noopener noreferrer" data-lang-es="REGÍSTRATE"
+                            data-lang-en="REGISTER">REGÍSTRATE</a>
+                    </div>
                 </div>
             </div>
+            <footer class="cdr-hero-foot">
+                <a href="#why-barranquilla" class="cdr-hero-scroll-hint scroll-down"
+                    aria-label="Desplazarse hacia abajo" data-aria-label-es="Desplazarse hacia abajo"
+                    data-aria-label-en="Scroll down">
+                    <svg class="cdr-hero-chevron" width="34" height="22" viewBox="0 0 34 22" aria-hidden="true"
+                        focusable="false">
+                        <path d="M2 8 L17 20 L32 8" fill="none" stroke="currentColor" stroke-width="2"
+                            stroke-linecap="round" stroke-linejoin="round" />
+                    </svg>
+                </a>
+            </footer>
         </div>
-        <div class="banner-content" data-aos="fade-in" data-aos-delay="100">
-            <h1>
-                <!-- Ejemplo de traducción en span -->
-                <span class="decorative-font" data-lang-es="CONOCE LA CIUDAD DEL RÍO"
-                    data-lang-en="DISCOVER THE CIUDAD DEL RÍO">CONOCE LA CIUDAD DEL RÍO</span>
-            </h1>
-            <!-- Ejemplo de traducción en p -->
-            <p class="lead"
-                data-lang-es="Barranquilla mira al río Magdalena con un ambicioso proyecto de renovación urbana"
-                data-lang-en="Barranquilla looks towards the Magdalena River with an ambitious urban renewal project">
-                Barranquilla mira al río Magdalena con un ambicioso proyecto de renovación urbana</p>
-            <!-- Ejemplo de traducción en a (botón) -->
-            <a href="#contact" class="btn btn-primary" data-lang-es="Solicitar Información"
-                data-lang-en="Request Information">Solicitar Información</a>
-            <a href="#why-barranquilla" class="btn btn-secondary" style="margin-left: 1rem;" data-lang-es="Conoce Más"
-                data-lang-en="Learn More">Conoce Más</a>
-        </div>
-        <a href="#why-barranquilla" class="scroll-down" aria-label="Scroll Down">
-            <i class="fas fa-chevron-down"></i> <span data-lang-es="Descubre" data-lang-en="Discover">Descubre
-                <br></span>
-            <!-- Añadido span para traducir texto junto al icono -->
-        </a>
+        <div class="cdr-hero-curve" aria-hidden="true"></div>
     </section>
 
     <main>
@@ -184,132 +249,179 @@
         <!-- ======================================= -->
 
         <!-- 1. ¿Por qué Barranquilla? Section -->
-        <section id="why-barranquilla" class="section-bg">
-            <div class="angled-divider-top" style="color: var(--light-bg);">
-                <svg data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 120"
-                    preserveAspectRatio="none">
-                    <path d="M1200 120L0 16.48 0 0 1200 0 1200 120z" class="shape-fill"></path>
-                </svg>
-            </div>
+        <section id="why-barranquilla" class="section-bg al-sec al-sec-sheet">
             <div class="container">
                 <h2 data-aos="fade-up" data-lang-es="¿POR QUÉ BARRANQUILLA?" data-lang-en="WHY BARRANQUILLA?">¿POR QUÉ
                     BARRANQUILLA?</h2>
-                <div class="features-grid">
-                    <div class="feature-item" data-aos="fade-up" data-aos-delay="100">
-                        <div class="icon"><i class="fas fa-chart-line"></i></div>
-                        <h3 data-lang-es="Crecimiento Económico Imparable" data-lang-en="Unstoppable Economic Growth">
-                            Crecimiento Económico Imparable</h3>
-                        <p data-lang-es="Barranquilla es una de las 100 ciudades del mundo con mayor crecimiento en inversión extranjera directa, y lidera la Región Caribe como hub comercial, con un fuerte aumento en ventas empresariales. Una ciudad donde los negocios encuentran terreno fértil para prosperar."
-                            data-lang-en="Barranquilla is one of the 100 cities in the world with the highest growth in foreign direct investment, and leads the Caribbean Region as a commercial hub, with a strong increase in business sales. A city where businesses find fertile ground to thrive.">
-                            Barranquilla es una de las 100 ciudades del mundo con mayor crecimiento en inversión
-                            extranjera directa, y lidera la Región Caribe como hub comercial, con un fuerte aumento en
-                            ventas empresariales. Una ciudad donde los negocios encuentran terreno fértil para
-                            prosperar.</p>
+                <div class="why-baq-hub" data-aos="fade-up" data-aos-delay="100">
+                    <div class="why-baq-hub__tabs" role="tablist"
+                        aria-label="Razones para invertir en Barranquilla"
+                        data-aria-label-es="Razones para invertir en Barranquilla"
+                        data-aria-label-en="Reasons to invest in Barranquilla">
+                        <button type="button" class="why-baq-hub__tab is-active" role="tab" id="why-baq-tab-0"
+                            aria-selected="true" aria-controls="why-baq-panel-0" data-why-index="0"
+                            data-lang-es="Economía" data-lang-en="Economy">Economía</button>
+                        <button type="button" class="why-baq-hub__tab" role="tab" id="why-baq-tab-1"
+                            aria-selected="false" aria-controls="why-baq-panel-1" data-why-index="1" tabindex="-1"
+                            data-lang-es="Infraestructura" data-lang-en="Infrastructure">Infraestructura</button>
+                        <button type="button" class="why-baq-hub__tab" role="tab" id="why-baq-tab-2"
+                            aria-selected="false" aria-controls="why-baq-panel-2" data-why-index="2" tabindex="-1"
+                            data-lang-es="Turismo" data-lang-en="Tourism">Turismo</button>
                     </div>
-                    <div class="feature-item" data-aos="fade-up" data-aos-delay="300">
-                        <div class="icon"><i class="fas fa-city"></i></div>
-                        <h3 data-lang-es="Infraestructura y Desarrollo a Gran Escala"
-                            data-lang-en="Large-Scale Infrastructure and Development"> Infraestructura y Desarrollo a
-                            Gran Escala</h3>
-                        <p data-lang-es="Con la mayor inversión pública per cápita en Colombia, Barranquilla transforma su entorno urbano y natural, revitalizando su conexión histórica con el mar y el río Magdalena mediante proyectos de clase mundial."
-                            data-lang-en="With the highest public investment per capita in Colombia, Barranquilla transforms its urban and natural environment, revitalizing its historical connection with the sea and the Magdalena River through world-class projects.">
-                            Con la mayor inversión pública per cápita en Colombia, Barranquilla transforma su entorno
-                            urbano y natural, revitalizando su conexión histórica con el mar y el río Magdalena mediante
-                            proyectos de clase mundial.</p>
-                    </div>
-                    <div class="feature-item" data-aos="fade-up" data-aos-delay="400">
-                        <div class="icon"><i class="fas fa-globe-americas"></i></div>
-                        <h3 data-lang-es="Turismo y Calidad de Vida en Ascenso"
-                            data-lang-en="Rising Tourism and Quality of Life"> Turismo y Calidad de Vida en Ascenso</h3>
-                        <p data-lang-es="Reconocida como la capital deportiva del Caribe y hogar de eventos internacionales, la ciudad alcanzó un récord histórico de 1.6 millones de visitantes en 2023, consolidándose como un destino vibrante para vivir, invertir y disfrutar."
-                            data-lang-en="Recognized as the sports capital of the Caribbean region and home to international events, the city reached a historic record of 1.6 million visitors in 2023, consolidating itself as a vibrant destination to live and invest.">
-                            Reconocida como la capital deportiva del Caribe y hogar de eventos internacionales, la
-                            ciudad alcanzó un récord histórico de 1.6 millones de visitantes en 2023, consolidándose
-                            como un destino vibrante para vivir, invertir y disfrutar.</p>
+                    <div class="why-baq-hub__viewport">
+                        <article class="why-baq-hub__slide is-active" role="tabpanel" id="why-baq-panel-0"
+                            aria-labelledby="why-baq-tab-0">
+                            <div class="why-baq-hub__icon" aria-hidden="true"><i class="fas fa-chart-line"></i></div>
+                            <h3 data-lang-es="Crecimiento Económico Imparable"
+                                data-lang-en="Unstoppable Economic Growth">Crecimiento Económico Imparable</h3>
+                            <p data-lang-es="Barranquilla es una de las 100 ciudades del mundo con mayor crecimiento en inversión extranjera directa, y lidera la Región Caribe como hub comercial, con un fuerte aumento en ventas empresariales. Una ciudad donde los negocios encuentran terreno fértil para prosperar."
+                                data-lang-en="Barranquilla is one of the 100 cities in the world with the highest growth in foreign direct investment, and leads the Caribbean Region as a commercial hub, with a strong increase in business sales. A city where businesses find fertile ground to thrive.">
+                                Barranquilla es una de las 100 ciudades del mundo con mayor crecimiento en inversión
+                                extranjera directa, y lidera la Región Caribe como hub comercial, con un fuerte aumento
+                                en ventas empresariales. Una ciudad donde los negocios encuentran terreno fértil para
+                                prosperar.</p>
+                        </article>
+                        <article class="why-baq-hub__slide" role="tabpanel" id="why-baq-panel-1"
+                            aria-labelledby="why-baq-tab-1" hidden>
+                            <div class="why-baq-hub__icon" aria-hidden="true"><i class="fas fa-city"></i></div>
+                            <h3 data-lang-es="Infraestructura y Desarrollo a Gran Escala"
+                                data-lang-en="Large-Scale Infrastructure and Development">Infraestructura y Desarrollo a
+                                Gran Escala</h3>
+                            <p data-lang-es="Con la mayor inversión pública per cápita en Colombia, Barranquilla transforma su entorno urbano y natural, revitalizando su conexión histórica con el mar y el río Magdalena mediante proyectos de clase mundial."
+                                data-lang-en="With the highest public investment per capita in Colombia, Barranquilla transforms its urban and natural environment, revitalizing its historical connection with the sea and the Magdalena River through world-class projects.">
+                                Con la mayor inversión pública per cápita en Colombia, Barranquilla transforma su entorno
+                                urbano y natural, revitalizando su conexión histórica con el mar y el río Magdalena
+                                mediante proyectos de clase mundial.</p>
+                        </article>
+                        <article class="why-baq-hub__slide" role="tabpanel" id="why-baq-panel-2"
+                            aria-labelledby="why-baq-tab-2" hidden>
+                            <div class="why-baq-hub__icon" aria-hidden="true"><i class="fas fa-globe-americas"></i></div>
+                            <h3 data-lang-es="Turismo y Calidad de Vida en Ascenso"
+                                data-lang-en="Rising Tourism and Quality of Life">Turismo y Calidad de Vida en Ascenso</h3>
+                            <p data-lang-es="Reconocida como la capital deportiva del Caribe y hogar de eventos internacionales, la ciudad alcanzó un récord histórico de 1.6 millones de visitantes en 2023, consolidándose como un destino vibrante para vivir, invertir y disfrutar."
+                                data-lang-en="Recognized as the sports capital of the Caribbean region and home to international events, the city reached a historic record of 1.6 million visitors in 2023, consolidating itself as a vibrant destination to live and invest.">
+                                Reconocida como la capital deportiva del Caribe y hogar de eventos internacionales, la
+                                ciudad alcanzó un récord histórico de 1.6 millones de visitantes en 2023, consolidándose
+                                como un destino vibrante para vivir, invertir y disfrutar.</p>
+                        </article>
                     </div>
                 </div>
             </div>
         </section>
 
         <!-- 2. Proyectos Section -->
-        <section id="proyectos" class="section-bg">
-            <div class="container">
-                <h2 data-aos="fade-up" data-lang-es="PROYECTOS" data-lang-en="PROJECTS">PROYECTOS</h2>
-            </div>
-
-            <div class="block alrio-block coming-soon-highlight" data-aos="fade-up" data-aos-delay="50">
-                <div class="content-wrapper">
-                    <div class="alrio-brand">
-                        <img src="./assets/imagenes/Alrio/LOGO-ALRIO_dorado-scaled.png" alt="ALRÍO"
-                            class="alrio-logo" data-alt-es="ALRÍO" data-alt-en="ALRÍO">
-                        <span class="alrio-subtitle">APARTAMENTOS</span>
-                    </div>
-
-                    <div class="alrio-copy">
-                        <p class="alrio-soon-label" data-lang-es="MUY PRONTO" data-lang-en="COMING SOON">MUY PRONTO</p>
-                        <h2 data-lang-es="Primer proyecto residencial exclusivo"
-                            data-lang-en="The first exclusive residential project">
-                            Primer proyecto residencial exclusivo
-                        </h2>
-                    </div>
-
-                    <div class="action-content">
-                        <a href="https://share.hsforms.com/1Gtbn-f_0RCiwjNTR8z41AA560hs" class="m72-button"
-                            target="_blank" rel="noopener noreferrer" data-lang-es="REGÍSTRATE AQUÍ"
-                            data-lang-en="REGISTER HERE">REGÍSTRATE AQUÍ</a>
-                    </div>
-                </div>
-            </div>
-
-            <div class="container">
-                <hr style="margin: 5rem 0; border: 0; border-top: 1px solid var(--border-color);">
-
-                <div id="malecon-72" class="project-container" data-aos="fade-up" data-aos-delay="100">
-                    <div class="project-column-media">
-                        <div class="gallery-item" data-aos="zoom-in" data-aos-delay="100">
-                            <div class="slider-container">
-                                <div class="slider-images">
-                                    <img src="./assets/imagenes/Vistas/Malecon 72.png"
-                                        alt="Malecón 72 - Imagen Principal" data-alt-es="Malecón 72 - Imagen Principal"
-                                        data-alt-en="Malecón 72 - Main Image">
+        <section id="proyectos" class="section-bg al-sec al-sec-overlap">
+            <figure class="block alrio-block alrio-block--promo al-cover-card coming-soon-highlight" data-aos="fade-up"
+                data-aos-delay="50">
+                <picture class="alrio-block__cover-picture">
+                    <source media="(min-width: 769px)"
+                        srcset="./assets/imagenes/Alrio/alrio-hero-pc.png?v=20260210">
+                    <img class="alrio-block__cover" src="./assets/imagenes/Alrio/alrio-card-render.jpg" alt=""
+                        width="1600" height="900" decoding="async" fetchpriority="high" loading="eager"
+                        aria-hidden="true">
+                </picture>
+                <figcaption class="alrio-block__caption">
+                    <div class="alrio-block__inner">
+                        <div class="alrio-block__content">
+                            <div class="alrio-block__top">
+                                <p class="alrio-eyebrow" data-lang-es="Barranquilla · Gran Malecón del Río"
+                                    data-lang-en="Barranquilla · Gran Malecón of the River">Barranquilla · Gran Malecón del
+                                    Río</p>
+                                <div class="alrio-brand">
+                                    <img src="./assets/imagenes/Alrio/LOGO-ALRIO_dorado-scaled.png" alt="ALRÍO"
+                                        class="alrio-logo" data-alt-es="ALRÍO" data-alt-en="ALRÍO">
+                                    <span class="alrio-subtitle">APARTAMENTOS</span>
                                 </div>
-                                <button class="zoom-btn" aria-label="Ampliar imagen"><i
-                                        class="fas fa-search-plus"></i></button>
+                                <h2 class="alrio-headline" data-lang-es="Primer proyecto residencial exclusivo frente al río Magdalena."
+                                    data-lang-en="The first exclusive residential project facing the Magdalena River.">
+                                    Primer proyecto residencial exclusivo frente al río&nbsp;Magdalena.
+                                </h2>
                             </div>
-                            <div class="overlay-content">
-                                <h4>MALECÓN 72</h4>
+                            <div class="alrio-block__bottom">
+                                <div class="alrio-copy">
+                                    <p class="alrio-soon-label" data-lang-es="MUY PRONTO" data-lang-en="COMING SOON">MUY
+                                        PRONTO</p>
+                                </div>
+                                <div class="action-content">
+                                    <a href="https://share.hsforms.com/1Gtbn-f_0RCiwjNTR8z41AA560hs" class="m72-button"
+                                        target="_blank" rel="noopener noreferrer" data-lang-es="REGÍSTRATE AQUÍ"
+                                        data-lang-en="REGISTER HERE">REGÍSTRATE AQUÍ</a>
+                                </div>
                             </div>
                         </div>
-                        <div class="video-container">
-                            <iframe
-                                src="https://www.youtube.com/embed/zeiQK20IrmM?si=t-1-pO45rKhslUSl&autoplay=1&mute=1&loop=1&playlist=zeiQK20IrmM&controls=0&showinfo=0&rel=0&modestbranding=1"
-                                title="YouTube video player - Malecón 72"
-                                data-title-es="YouTube video player - Malecón 72"
-                                data-title-en="YouTube video player - Malecón 72" frameborder="0"
-                                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                                allowfullscreen>
-                            </iframe>
+                        <div class="alrio-block__visual" aria-hidden="true">
+                            <img class="alrio-block__tower" src="./assets/imagenes/Alrio/torre-alrio.png?v=20260208x"
+                                alt="" width="580" height="900" decoding="async">
                         </div>
                     </div>
-                    <div class="project-column-text">
-                        <div class="feature-item">
-                            <div class="icon"><i class="fas fa-star"></i></div>
-                            <h3>MALECÓN 72</h3>
-                            <p><strong data-lang-es="El proyecto inmobiliario más exitoso de Barranquilla"
-                                    data-lang-en="The most successful real estate project in Barranquilla">El proyecto
-                                    inmobiliario más exitoso de Barranquilla</strong><br>
-                                <span
-                                    data-lang-es="Malecón 72, un proyecto que redefine la forma de vivir e invertir en el Caribe colombiano. Su ubicación estratégica frente al Gran Malecón del Río lo convierte en un ícono de modernidad, naturaleza y alta valorización."
-                                    data-lang-en="Malecón 72, a project that redefines how to live and invest in the Colombian Caribbean. Its strategic location facing the Gran Malecón del Río makes it an icon of modernity, nature, and high appreciation.">Ubicado
-                                    en primera línea del Gran Malecón y frente al río Magdalena...</span>
-                            </p>
-                            <a href="https://www.malecon72.com/" class="btn btn-primary" target="_blank"
-                                rel="noopener noreferrer" data-lang-es="Más Información"
-                                data-lang-en="More Information">Más
-                                Información</a>
-                        </div>
-                    </div>
+                </figcaption>
+            </figure>
+
+            <div class="proj-stack-wrap">
+                <div class="proj-stack-head">
+                    <h2 data-aos="fade-up" data-lang-es="PROYECTOS" data-lang-en="PROJECTS">PROYECTOS</h2>
                 </div>
+                <div class="proj-stack">
+
+                <article class="proj-panel" id="malecon-72" data-aos="fade-up" data-aos-delay="100">
+                    <div class="proj-panel__carousel" data-proj-carousel>
+                        <div class="proj-panel__stage">
+                        <div class="proj-panel__track">
+                            <div class="proj-panel__slide proj-panel__slide--info">
+                                <img class="proj-panel__slide-bg" src="./assets/imagenes/Vistas/Malecon 72.png" alt=""
+                                    aria-hidden="true" decoding="async">
+                                <div class="proj-panel__veil" aria-hidden="true"></div>
+                                <div class="proj-panel__slide-content">
+                                    <div class="proj-panel__icon" aria-hidden="true"><i class="fas fa-star"></i></div>
+                                    <h3 class="proj-panel__title">MALECÓN 72</h3>
+                                    <p class="proj-panel__kicker"><span>Malecón 72</span></p>
+                                    <p><strong data-lang-es="El proyecto inmobiliario más exitoso de Barranquilla"
+                                            data-lang-en="The most successful real estate project in Barranquilla">El
+                                            proyecto inmobiliario más exitoso de Barranquilla</strong>
+                                        <span
+                                            data-lang-es="Malecón 72, un proyecto que redefine la forma de vivir e invertir en el Caribe colombiano. Su ubicación estratégica frente al Gran Malecón del Río lo convierte en un ícono de modernidad, naturaleza y alta valorización."
+                                            data-lang-en="Malecón 72, a project that redefines how to live and invest in the Colombian Caribbean. Its strategic location facing the Gran Malecón del Río makes it an icon of modernity, nature, and high appreciation.">Malecón
+                                            72, un proyecto que redefine la forma de vivir e invertir en el Caribe
+                                            colombiano. Su ubicación estratégica frente al Gran Malecón del Río lo
+                                            convierte en un ícono de modernidad, naturaleza y alta valorización.</span>
+                                    </p>
+                                    <a href="https://www.malecon72.com/" class="btn btn-primary" target="_blank"
+                                        rel="noopener noreferrer" data-lang-es="Más Información"
+                                        data-lang-en="More Information">Más Información</a>
+                                </div>
+                            </div>
+                            <div class="proj-panel__slide proj-panel__slide--media">
+                                <img src="./assets/imagenes/Vistas/Malecon 72.png"
+                                    alt="Malecón 72 - Imagen Principal" data-alt-es="Malecón 72 - Imagen Principal"
+                                    data-alt-en="Malecón 72 - Main Image" loading="lazy" decoding="async">
+                            </div>
+                            <div class="proj-panel__slide proj-panel__slide--video">
+                                <iframe
+                                    data-src="https://www.youtube.com/embed/zeiQK20IrmM?autoplay=1&mute=1&rel=0&modestbranding=1&playsinline=1&enablejsapi=1&loop=1&playlist=zeiQK20IrmM"
+                                    title="YouTube video player - Malecón 72"
+                                    data-title-es="YouTube video player - Malecón 72"
+                                    data-title-en="YouTube video player - Malecón 72"
+                                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                                    allowfullscreen></iframe>
+                            </div>
+                        </div>
+                        <div class="proj-panel__controls">
+                            <div class="proj-panel__dots" role="tablist" aria-label="Malecón 72">
+                                <button type="button" class="proj-panel__dot is-active" role="tab" aria-selected="true"
+                                    aria-label="Información" data-slide-index="0"></button>
+                                <button type="button" class="proj-panel__dot" role="tab" aria-selected="false"
+                                    aria-label="Render" data-slide-index="1"></button>
+                                <button type="button" class="proj-panel__dot" role="tab" aria-selected="false"
+                                    aria-label="Video" data-slide-index="2"></button>
+                            </div>
+                            <button type="button" class="proj-panel__arrow proj-panel__arrow--play"
+                                aria-label="Reproducir video">
+                                <i class="fas fa-play" aria-hidden="true"></i>
+                            </button>
+                        </div>
+                        </div>
+                    </div>
+                </article>
 
                 <!-- <div id="vive-rio-business" class="project-container reverse" data-aos="fade-up" data-aos-delay="100">
                     <div class="project-column-text">
@@ -361,158 +473,197 @@
                     </div>
                 </div> -->
 
-                <hr style="margin: 5rem 0; border: 0; border-top: 1px solid var(--border-color);">
-
-                <div id="vive-rio" class="project-container" data-aos="fade-up" data-aos-delay="100">
-                    <div class="project-column-media">
-                        <div class="gallery-item" data-aos="zoom-in" data-aos-delay="100">
-                            <div class="slider-container">
-                                <div class="slider-images">
-                                    <img src="./assets/imagenes/Vistas/Vive Rio.png" alt="Vive Río - Imagen Principal"
-                                        data-alt-es="Vive Río - Imagen Principal" data-alt-en="Vive Río - Main Image">
+                <article class="proj-panel" id="vive-rio" data-aos="fade-up" data-aos-delay="100">
+                    <div class="proj-panel__carousel" data-proj-carousel>
+                        <div class="proj-panel__stage">
+                        <div class="proj-panel__track">
+                            <div class="proj-panel__slide proj-panel__slide--info">
+                                <img class="proj-panel__slide-bg" src="./assets/imagenes/Vistas/Vive Rio.png" alt=""
+                                    aria-hidden="true" decoding="async">
+                                <div class="proj-panel__veil" aria-hidden="true"></div>
+                                <div class="proj-panel__slide-content">
+                                    <div class="proj-panel__icon" aria-hidden="true"><i class="fas fa-trophy"></i></div>
+                                    <h3 class="proj-panel__title">VIVE RÍO</h3>
+                                    <p class="proj-panel__kicker"><span>Vive Río</span></p>
+                                    <p><strong data-lang-es="El comienzo de una historia de éxito"
+                                            data-lang-en="The beginning of a success story">El comienzo de una historia
+                                            de éxito</strong>
+                                        <span
+                                            data-lang-es="El primer proyecto del Gran Malecón de Barranquilla que se posicionó como número 1 en ventas en 2022 en todo el Departamento. Diseñado y estructurado bajo criterios de construcción sostenible. Proyecto de 34 pisos de uso mixto, con modelo habitacional, rentas cortas, distrito gastronómico y oficinas."
+                                            data-lang-en="The first project on Barranquilla's Gran Malecón that ranked number 1 in sales in 2022 throughout the Department. Designed and structured under sustainable construction criteria. A 34-story mixed-use project, with a housing model, short-term rentals, a gastronomic district, and offices.">El
+                                            primer proyecto del Gran Malecón de Barranquilla que se posicionó como
+                                            número 1 en ventas en 2022 en todo el Departamento. Diseñado y estructurado
+                                            bajo criterios de construcción sostenible. Proyecto de 34 pisos de uso
+                                            mixto, con modelo habitacional, rentas cortas, distrito gastronómico y
+                                            oficinas.</span>
+                                    </p>
+                                    <a href="https://vive-rio.com/" class="btn btn-primary" target="_blank"
+                                        rel="noopener noreferrer" data-lang-es="Más Información"
+                                        data-lang-en="More Information">Más Información</a>
                                 </div>
-                                <button class="zoom-btn" aria-label="Ampliar imagen"><i
-                                        class="fas fa-search-plus"></i></button>
                             </div>
-                            <div class="overlay-content">
-                                <h4>VIVE RÍO</h4>
+                            <div class="proj-panel__slide proj-panel__slide--media">
+                                <img src="./assets/imagenes/Vistas/Vive Rio.png" alt="Vive Río - Imagen Principal"
+                                    data-alt-es="Vive Río - Imagen Principal" data-alt-en="Vive Río - Main Image"
+                                    loading="lazy" decoding="async">
+                            </div>
+                            <div class="proj-panel__slide proj-panel__slide--video">
+                                <iframe
+                                    data-src="https://www.youtube.com/embed/kFzc51X3QxM?autoplay=1&mute=1&rel=0&modestbranding=1&playsinline=1&enablejsapi=1&loop=1&playlist=kFzc51X3QxM"
+                                    title="YouTube video player - Vive Río"
+                                    data-title-es="YouTube video player - Vive Río"
+                                    data-title-en="YouTube video player - Vive Río"
+                                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                                    allowfullscreen></iframe>
                             </div>
                         </div>
-                        <div class="video-container">
-                            <iframe
-                                src="https://www.youtube.com/embed/kFzc51X3QxM?si=2dr2L5tXViJRmv0o&autoplay=1&mute=1&loop=1&playlist=kFzc51X3QxM&controls=0&showinfo=0&rel=0&modestbranding=1"
-                                title="YouTube video player - Vive Río" data-title-es="YouTube video player - Vive Río"
-                                data-title-en="YouTube video player - Vive Río" frameborder="0"
-                                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                                allowfullscreen>
-                            </iframe>
+                        <div class="proj-panel__controls">
+                            <div class="proj-panel__dots" role="tablist" aria-label="Vive Río">
+                                <button type="button" class="proj-panel__dot is-active" role="tab" aria-selected="true"
+                                    aria-label="Información" data-slide-index="0"></button>
+                                <button type="button" class="proj-panel__dot" role="tab" aria-selected="false"
+                                    aria-label="Render" data-slide-index="1"></button>
+                                <button type="button" class="proj-panel__dot" role="tab" aria-selected="false"
+                                    aria-label="Video" data-slide-index="2"></button>
+                            </div>
+                            <button type="button" class="proj-panel__arrow proj-panel__arrow--play"
+                                aria-label="Reproducir video">
+                                <i class="fas fa-play" aria-hidden="true"></i>
+                            </button>
+                        </div>
                         </div>
                     </div>
-                    <div class="project-column-text">
-                        <div class="feature-item">
-                            <div class="icon"><i class="fas fa-trophy"></i></div>
-                            <h3>VIVE RÍO</h3>
-                            <p><strong data-lang-es="El comienzo de una historia de éxito"
-                                    data-lang-en="The beginning of a success story">El comienzo de una historia de
-                                    éxito</strong><br>
-                                <span
-                                    data-lang-es="El primer proyecto del Gran Malecón de Barranquilla que se posicionó como número 1 en ventas en 2022 en todo el Departamento."
-                                    data-lang-en="The first project on Barranquilla's Gran Malecón that ranked number 1 in sales in 2022 throughout the Department.">El
-                                    primer proyecto del Gran Malecón de Barranquilla que se posicionó como número 1 en
-                                    ventas en 2022 en todo el Departamento.</span><br><br>
-                                <span
-                                    data-lang-es="Diseñado y estructurado bajo criterios de construcción sostenible. Proyecto de 34 pisos de uso mixto, con modelo habitacional, rentas cortas, distrito gastronómico y oficinas."
-                                    data-lang-en="Designed and structured under sustainable construction criteria. A 34-story mixed-use project, with a housing model, short-term rentals, a gastronomic district, and offices.">Diseñado
-                                    y estructurado bajo criterios de construcción sostenible. Proyecto de 34 pisos de
-                                    uso mixto...</span>
-                            </p>
-                            <a href="https://vive-rio.com/" class="btn btn-primary" target="_blank"
-                                rel="noopener noreferrer" data-lang-es="Más Información"
-                                data-lang-en="More Information">Más Información</a>
-                        </div>
-                    </div>
-                </div>
+                </article>
 
-                <hr style="margin: 5rem 0; border: 0; border-top: 1px solid var(--border-color);">
-
-                <div id="rio-living" class="project-container reverse" data-aos="fade-up" data-aos-delay="100">
-                    <div class="project-column-text">
-                        <div class="feature-item">
-                            <div class="icon"><i class="fas fa-water"></i></div>
-                            <h3>RÍO LIVING</h3>
-                            <p><strong>Un estilo de vida moderno frente al río.</strong><br>
-                                <span>Un proyecto diseñado para quienes buscan un estilo de vida moderno frente al Gran
-                                    Malecón
-                                    de Barranquilla. Río Living combina confort, exclusividad y valorización en un
-                                    entorno
-                                    natural único, donde cada apartamento conecta con la energía del río y la
-                                    transformación
-                                    urbana de la ciudad.</span>
-                            </p>
-                            <a href="#contact" class="btn btn-primary">Más Información</a>
-                        </div>
-                    </div>
-                    <div class="project-column-media">
-                        <div class="gallery-item" data-aos="zoom-in" data-aos-delay="100">
-                            <div class="slider-container">
-                                <div class="slider-images">
-                                    <img src="./assets/imagenes/Vistas/Portada173471493725_plana.jpeg"
-                                        alt="Rivatta del Río - Vista Aérea" data-alt-es="Rivatta del Río - Vista Aérea"
-                                        data-alt-en="Rivatta del Río - Aerial View">
-                                    <img src="./assets/imagenes/Vistas/lobby-proyecto-rio-living.jpg"
-                                        alt="Rivatta del Río - Piscina" data-alt-es="Rivatta del Río - Piscina"
-                                        data-alt-en="Rivatta del Río - Pool">
-                                    <img src="./assets/imagenes/Vistas/piscina-noche-rio-living.jpg"
-                                        alt="Rivatta del Río - Vista Aérea" data-alt-es="Rivatta del Río - Vista Aérea"
-                                        data-alt-en="Rivatta del Río - Aerial View">
+                <article class="proj-panel" id="rivatta-del-rio" data-aos="fade-up" data-aos-delay="100">
+                    <div class="proj-panel__carousel" data-proj-carousel>
+                        <div class="proj-panel__stage">
+                        <div class="proj-panel__track">
+                            <div class="proj-panel__slide proj-panel__slide--info">
+                                <img class="proj-panel__slide-bg"
+                                    src="https://cbolivarstoragedev.blob.core.windows.net/fileslive-2023-20-11/imagenes/proyectos/slider-fotos/rivatta-imagen-aerea-1.webp"
+                                    alt="" aria-hidden="true" decoding="async">
+                                <div class="proj-panel__veil" aria-hidden="true"></div>
+                                <div class="proj-panel__slide-content">
+                                    <div class="proj-panel__icon" aria-hidden="true"><i class="fas fa-water"></i></div>
+                                    <h3 class="proj-panel__title">RIVATTA DEL RÍO</h3>
+                                    <p class="proj-panel__kicker"><span>Rivatta del Río</span></p>
+                                    <p><strong data-lang-es="Lujo, Diseño y Conexión con Ciudad del Río"
+                                            data-lang-en="Luxury, Design and Connection with Ciudad del Río">Lujo,
+                                            Diseño y Conexión con Ciudad del Río</strong>
+                                        <span
+                                            data-lang-es="Proyecto habitacional de alto perfil de Constructora Bolívar, estratégicamente ubicado frente al Gran Malecón. Con torres modernas, fachadas dinámicas y balcones en todos los apartamentos, Rivatta integra diseño sofisticado con funcionalidad."
+                                            data-lang-en="High-profile residential project by Constructora Bolívar, strategically located in front of the Gran Malecón. With modern towers, dynamic facades and balconies in all apartments, Rivatta integrates sophisticated design with functionality.">Proyecto
+                                            habitacional de alto perfil de Constructora Bolívar, estratégicamente
+                                            ubicado frente al Gran Malecón. Con torres modernas, fachadas dinámicas y
+                                            balcones en todos los apartamentos, Rivatta integra diseño sofisticado con
+                                            funcionalidad.</span>
+                                    </p>
+                                    <a href="https://www.constructorabolivar.com/proyectos-vivienda/apartamentos-en-venta-barranquilla/rivatta-del-rio"
+                                        class="btn btn-primary" target="_blank" rel="noopener noreferrer"
+                                        data-lang-es="Más Información" data-lang-en="More Information">Más
+                                        Información</a>
                                 </div>
-                                <div class="slider-nav"><button class="prev-btn" aria-label="Anterior"><i
-                                            class="fas fa-chevron-left"></i></button><button class="next-btn"
-                                        aria-label="Siguiente"><i class="fas fa-chevron-right"></i></button></div>
-                                <div class="slider-indicators"></div>
-                                <button class="zoom-btn" aria-label="Ampliar imagen"><i
-                                        class="fas fa-search-plus"></i></button>
                             </div>
-                            <div class="overlay-content">
-                                <h4>RIO LIVING</h4>
+                            <div class="proj-panel__slide proj-panel__slide--media">
+                                <img src="https://cbolivarstoragedev.blob.core.windows.net/fileslive-2023-20-11/imagenes/proyectos/slider-fotos/rivatta-imagen-aerea-1.webp"
+                                    alt="Rivatta del Río - Vista Aérea" data-alt-es="Rivatta del Río - Vista Aérea"
+                                    data-alt-en="Rivatta del Río - Aerial View" loading="lazy" decoding="async">
+                            </div>
+                            <div class="proj-panel__slide proj-panel__slide--video">
+                                <iframe
+                                    data-src="https://www.youtube.com/embed/XFBTwgJPogQ?autoplay=1&mute=1&rel=0&modestbranding=1&playsinline=1&enablejsapi=1&loop=1&playlist=XFBTwgJPogQ"
+                                    title="Video Rivatta del Río" data-title-es="Video Rivatta del Río"
+                                    data-title-en="Rivatta del Río video"
+                                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                                    allowfullscreen></iframe>
                             </div>
                         </div>
+                        <div class="proj-panel__controls">
+                            <div class="proj-panel__dots" role="tablist" aria-label="Rivatta del Río">
+                                <button type="button" class="proj-panel__dot is-active" role="tab" aria-selected="true"
+                                    aria-label="Información" data-slide-index="0"></button>
+                                <button type="button" class="proj-panel__dot" role="tab" aria-selected="false"
+                                    aria-label="Render" data-slide-index="1"></button>
+                                <button type="button" class="proj-panel__dot" role="tab" aria-selected="false"
+                                    aria-label="Video" data-slide-index="2"></button>
+                            </div>
+                            <button type="button" class="proj-panel__arrow proj-panel__arrow--play"
+                                aria-label="Reproducir video">
+                                <i class="fas fa-play" aria-hidden="true"></i>
+                            </button>
+                        </div>
+                        </div>
                     </div>
-                </div>
+                </article>
 
-                <hr style="margin: 5rem 0; border: 0; border-top: 1px solid var(--border-color);">
-
-                <div id="rivatta-del-rio" class="project-container" data-aos="fade-up" data-aos-delay="100">
-                    <div class="project-column-media">
-                        <div class="gallery-item" data-aos="zoom-in" data-aos-delay="100">
-                            <div class="slider-container">
-                                <div class="slider-images">
-                                    <img src="https://cbolivarstoragedev.blob.core.windows.net/fileslive-2023-20-11/imagenes/proyecto/fotos/rivatta-piscina-1.webp"
-                                        alt="Rivatta del Río - Piscina" data-alt-es="Rivatta del Río - Piscina"
-                                        data-alt-en="Rivatta del Río - Pool">
-                                    <img src="https://cbolivarstoragedev.blob.core.windows.net/fileslive-2023-20-11/imagenes/proyectos/slider-fotos/rivatta-imagen-aerea-1.webp"
-                                        alt="Rivatta del Río - Vista Aérea" data-alt-es="Rivatta del Río - Vista Aérea"
-                                        data-alt-en="Rivatta del Río - Aerial View">
+                <article class="proj-panel" id="rio-living" data-aos="fade-up" data-aos-delay="100">
+                    <div class="proj-panel__carousel" data-proj-carousel>
+                        <div class="proj-panel__stage">
+                        <div class="proj-panel__track">
+                            <div class="proj-panel__slide proj-panel__slide--info">
+                                <img class="proj-panel__slide-bg"
+                                    src="./assets/imagenes/Vistas/piscina-noche-rio-living.jpg" alt=""
+                                    aria-hidden="true" decoding="async">
+                                <div class="proj-panel__veil" aria-hidden="true"></div>
+                                <div class="proj-panel__slide-content">
+                                    <div class="proj-panel__icon" aria-hidden="true"><i class="fas fa-water"></i></div>
+                                    <h3 class="proj-panel__title">RÍO LIVING</h3>
+                                    <p class="proj-panel__kicker"><span>Río Living</span></p>
+                                    <p><strong data-lang-es="Un estilo de vida moderno frente al río."
+                                            data-lang-en="A modern lifestyle facing the river.">Un estilo de vida
+                                            moderno frente al río.</strong>
+                                        <span
+                                            data-lang-es="Un proyecto diseñado para quienes buscan un estilo de vida moderno frente al Gran Malecón de Barranquilla. Río Living combina confort, exclusividad y valorización en un entorno natural único, donde cada apartamento conecta con la energía del río y la transformación urbana de la ciudad."
+                                            data-lang-en="A project designed for those seeking a modern lifestyle facing Barranquilla's Gran Malecón. Río Living combines comfort, exclusivity and appreciation in a unique natural setting, where each apartment connects with the energy of the river and the city's urban transformation.">Un
+                                            proyecto diseñado para quienes buscan un estilo de vida moderno frente al
+                                            Gran Malecón de Barranquilla. Río Living combina confort, exclusividad y
+                                            valorización en un entorno natural único, donde cada apartamento conecta con
+                                            la energía del río y la transformación urbana de la ciudad.</span>
+                                    </p>
+                                    <a href="https://www.constructorabolivar.com/proyectos-vivienda/barranquilla/rio-living"
+                                        class="btn btn-primary" target="_blank" rel="noopener noreferrer"
+                                        data-lang-es="Más Información" data-lang-en="More Information">Más
+                                        Información</a>
                                 </div>
-                                <div class="slider-nav"><button class="prev-btn" aria-label="Anterior"><i
-                                            class="fas fa-chevron-left"></i></button><button class="next-btn"
-                                        aria-label="Siguiente"><i class="fas fa-chevron-right"></i></button></div>
-                                <div class="slider-indicators"></div>
-                                <button class="zoom-btn" aria-label="Ampliar imagen"><i
-                                        class="fas fa-search-plus"></i></button>
                             </div>
-                            <div class="overlay-content">
-                                <h4>RIVATTA DEL RÍO</h4>
+                            <div class="proj-panel__slide proj-panel__slide--media">
+                                <img src="./assets/imagenes/Vistas/Portada173471493725_plana.jpeg"
+                                    alt="Río Living - Fachada nocturna" data-alt-es="Río Living - Fachada nocturna"
+                                    data-alt-en="Río Living - Night facade" loading="lazy" decoding="async">
+                            </div>
+                            <div class="proj-panel__slide proj-panel__slide--media">
+                                <img src="./assets/imagenes/Vistas/lobby-proyecto-rio-living.jpg"
+                                    alt="Río Living - Lobby" data-alt-es="Río Living - Lobby"
+                                    data-alt-en="Río Living - Lobby" loading="lazy" decoding="async">
                             </div>
                         </div>
-                    </div>
-                    <div class="project-column-text">
-                        <div class="feature-item">
-                            <div class="icon"><i class="fas fa-building"></i></div>
-                            <h3>RIVATTA DEL RÍO</h3>
-                            <p><strong data-lang-es="Lujo, Diseño y Conexión con Ciudad del Río"
-                                    data-lang-en="Luxury, Design and Connection with Ciudad del Río">Lujo, Diseño y
-                                    Conexión con Ciudad del Río</strong><br>
-                                <span
-                                    data-lang-es="Proyecto habitacional de alto perfil de Constructora Bolívar, estratégicamente ubicado frente al Gran Malecón. Con torres modernas, fachadas dinámicas y balcones en todos los apartamentos, Rivatta integra diseño sofisticado con funcionalidad."
-                                    data-lang-en="High-profile residential project by Constructora Bolívar, strategically located in front of the Gran Malecón. With modern towers, dynamic facades and balconies in all apartments, Rivatta integrates sophisticated design with functionality.">Proyecto
-                                    habitacional de alto perfil de Constructora Bolívar, estratégicamente ubicado frente
-                                    al Gran Malecón...</span>
-                            </p>
-                            <a href="https://www.constructorabolivar.com/proyectos-vivienda/apartamentos-en-venta-barranquilla/rivatta-del-rio"
-                                class="btn btn-primary" target="_blank" rel="noopener noreferrer"
-                                data-lang-es="Más Información" data-lang-en="More Information">Más Información</a>
+                        <div class="proj-panel__controls">
+                            <div class="proj-panel__dots" role="tablist" aria-label="Río Living">
+                                <button type="button" class="proj-panel__dot is-active" role="tab" aria-selected="true"
+                                    aria-label="Información" data-slide-index="0"></button>
+                                <button type="button" class="proj-panel__dot" role="tab" aria-selected="false"
+                                    aria-label="Render" data-slide-index="1"></button>
+                                <button type="button" class="proj-panel__dot" role="tab" aria-selected="false"
+                                    aria-label="Galería" data-slide-index="2"></button>
+                            </div>
+                            <button type="button" class="proj-panel__arrow proj-panel__arrow--play"
+                                aria-label="Reproducir presentación">
+                                <i class="fas fa-play" aria-hidden="true"></i>
+                            </button>
+                        </div>
                         </div>
                     </div>
-                </div>
+                </article>
 
+                </div>
             </div>
         </section>
 
         <!-- 3. Barranquilla y su Desarrollo -->
         <!-- REEMPLAZA TODA LA SECCIÓN desarrollo-barranquilla CON ESTE CÓDIGO -->
-        <section id="desarrollo-barranquilla">
-            <div class="container">
+        <section id="desarrollo-barranquilla" class="al-sec al-sec--cards">
+            <div class="al-sec-card">
                 <h2 data-aos="fade-up" data-lang-es="BARRANQUILLA Y SU DESARROLLO"
                     data-lang-en="BARRANQUILLA AND ITS DEVELOPMENT">BARRANQUILLA Y SU DESARROLLO</h2>
                 <p class="lead text-center" data-aos="fade-up" data-aos-delay="100"
@@ -712,8 +863,8 @@
                 </div>
             </div>
         </section>
-        <section id="noticias" class="section-bg">
-            <div class="container">
+        <section id="noticias" class="section-bg al-sec al-sec--cards">
+            <div class="al-sec-card">
                 <h2 data-aos="fade-up" data-lang-es="NOTICIAS Y ACTUALIDAD" data-lang-en="NEWS AND CURRENT EVENTS">
                     NOTICIAS Y ACTUALIDAD</h2>
                 <p class="lead text-center" data-aos="fade-up" data-aos-delay="50"
@@ -878,8 +1029,17 @@
                     </div>
 
                     <div class="adaptive-image-content" data-aos="fade-left">
-                        <img src="./assets/imagenes/Gran Malecon/Malecon_vistas(3).png" alt="Gran Malecón del Río"
-                            data-alt-es="Gran Malecón del Río" data-alt-en="Gran Malecón of the River">
+                        <div class="section-media-zoom">
+                            <div class="slider-container">
+                                <div class="slider-images">
+                                    <img src="./assets/imagenes/Gran Malecon/Malecon_vistas(3).png"
+                                        alt="Gran Malecón del Río" data-alt-es="Gran Malecón del Río"
+                                        data-alt-en="Gran Malecón of the River">
+                                </div>
+                                <button class="zoom-btn" aria-label="Ampliar imagen"><i
+                                        class="fas fa-search-plus"></i></button>
+                            </div>
+                        </div>
                     </div>
 
                 </div>
@@ -887,8 +1047,8 @@
         </section>
 
         <!-- 4. ¿QUÉ ES LA CIUDAD DEL RÍO? -->
-        <section id="ciudad-del-rio" class="section-bg">
-            <div class="container">
+        <section id="ciudad-del-rio" class="section-bg al-sec al-sec--cards">
+            <div class="al-sec-card">
                 <h2 data-aos="fade-up" data-lang-es="¿QUÉ ES LA CIUDAD DEL RÍO?"
                     data-lang-en="WHAT IS THE CIUDAD DEL RÍO?">¿QUÉ ES LA CIUDAD DEL RÍO?</h2>
                 <div class="ciudad-rio-grid">
@@ -931,8 +1091,17 @@
                         </ul>
                     </div>
                     <div class="ciudad-rio-image about-image" data-aos="fade-left" data-aos-delay="200">
-                        <img src="./assets/imagenes/Gran Malecon/gran-malecon.png" alt="Concepto Ciudad del Río"
-                            data-alt-es="Concepto Ciudad del Río" data-alt-en="Ciudad del Río Concept">
+                        <div class="section-media-zoom">
+                            <div class="slider-container">
+                                <div class="slider-images">
+                                    <img src="./assets/imagenes/Gran Malecon/gran-malecon.png"
+                                        alt="Concepto Ciudad del Río" data-alt-es="Concepto Ciudad del Río"
+                                        data-alt-en="Ciudad del Río Concept">
+                                </div>
+                                <button class="zoom-btn" aria-label="Ampliar imagen"><i
+                                        class="fas fa-search-plus"></i></button>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -954,8 +1123,8 @@
         </section>
 
         <!-- 5. Descubre la Nueva Barranquilla (Video) -->
-        <section id="ciudad-del-rio-video" class="section-bg">
-            <div class="container">
+        <section id="ciudad-del-rio-video" class="section-bg al-sec al-sec--cards">
+            <div class="al-sec-card">
                 <h2 data-aos="fade-up" style="text-align: center;"
                     data-lang-es="Descubre la Nueva Barranquilla: La Ciudad que Abraza su Río."
                     data-lang-en="Discover the New Barranquilla: The City that Embraces its River.">Descubre la Nueva
@@ -973,8 +1142,8 @@
             </div>
         </section>
 
-        <section id="blog" class="section-bg">
-            <div class="container">
+        <section id="blog" class="section-bg al-sec al-sec--cards al-sec-scroll-target">
+            <div class="al-sec-card">
                 <h2 data-aos="fade-up" data-lang-es="BLOG" data-lang-en="BLOG">BLOG</h2>
                 <p class="lead text-center" data-aos="fade-up" data-aos-delay="50"
                     data-lang-es="Mantente informado sobre las últimas novedades y oportunidades de inversión en Ciudad del Río y el Gran Malecón de Barranquilla."
@@ -1042,8 +1211,8 @@
         </section>
 
         <!-- 6. Mapa Lotes Section -->
-        <section id="mapa-lotes" class="section-bg">
-            <div class="container">
+        <section id="mapa-lotes" class="section-bg al-sec al-sec--cards">
+            <div class="al-sec-card">
                 <h2 data-aos="fade-up" data-lang-es="LOS PROYECTOS DE LA CIUDAD DEL RIO"
                     data-lang-en="PROJECTS IN CIUDAD DEL RÍO">LOS PROYECTOS DE LA CIUDAD DEL RIO</h2>
                 <p class="lead text-center" data-aos="fade-up" data-aos-delay="50"
@@ -1052,10 +1221,10 @@
                     Explora la distribución y disponibilidad de lotes dentro del plan maestro de Ciudad del Río a través
                     de nuestro mapa interactivo.
                 </p>
-                <div class="map-container" data-aos="fade-up" data-aos-delay="100">
+                <div class="map-container">
                     <iframe src="https://www.google.com/maps/d/embed?mid=19NtLexJzNf_GS-IdfO2NAr4zgeesCsk&ehbc=2E312F"
                         width="100%" height="500" style="border:0;" allowfullscreen="" loading="lazy"
-                        referrerpolicy="no-referrer-when-downgrade">
+                        referrerpolicy="no-referrer-when-downgrade" title="Mapa Ciudad del Río">
                     </iframe>
                 </div>
             </div>
@@ -1064,7 +1233,8 @@
         <!-- REEMPLAZAR TODA LA SECCIÓN DESDE "Descubre Malecón 72" HASTA EL FINAL DE "Rivatta del Río" -->
 
         <!-- Sección Grid de Proyectos -->
-        <div class="projects-showcase-section">
+        <div class="projects-showcase-section al-sec al-sec--cards">
+            <div class="al-sec-card">
             <div class="container">
                 <h2 data-aos="fade-up" data-lang-es="Descubre Nuestros Proyectos" data-lang-en="Discover Our Projects">
                     Descubre Nuestros Proyectos
@@ -1102,75 +1272,60 @@
                             </div>
                         </div>
 
-                        <!-- Proyecto 2: Rivatta del Río -->
+                        <!-- Proyecto 2: Vive Río -->
                         <div class="project-card" data-aos="fade-up" data-aos-delay="200">
                             <div class="project-card-image-container">
-                                <img src="https://cbolivarstoragedev.blob.core.windows.net/fileslive-2023-20-11/imagenes/proyecto/fotos/rivatta-piscina-1.webp"
-                                    alt="Rivatta del Río - Proyecto Residencial" class="project-card-image">
+                                <img src="./assets/imagenes/Vistas/Vive Rio.png" alt="Vive Río - Proyecto Residencial"
+                                    class="project-card-image" data-alt-es="Vive Río - Proyecto Residencial"
+                                    data-alt-en="Vive Río - Residential Project">
                                 <div class="project-card-overlay"></div>
                             </div>
                             <div class="project-card-content">
-                                <h3 data-lang-es="RIVATTA DEL RÍO" data-lang-en="RIVATTA DEL RÍO">RIVATTA DEL RÍO</h3>
-                                <p data-lang-es="Proyecto residencial que redefine el lujo y la conexión con la naturaleza frente al río Magdalena."
-                                    data-lang-en="Residential project that redefines luxury and connection with nature facing the Magdalena River.">
-                                    Proyecto residencial que redefine el lujo y la conexión con la naturaleza frente al
-                                    río Magdalena.
+                                <h3 data-lang-es="VIVE RÍO" data-lang-en="VIVE RÍO">VIVE RÍO</h3>
+                                <p data-lang-es="Desarrollo residencial frente al río Magdalena con arquitectura moderna, amenidades de primer nivel y conexión directa con el Gran Malecón."
+                                    data-lang-en="Residential development facing the Magdalena River with modern architecture, first-class amenities, and direct connection to the Gran Malecón.">
+                                    Desarrollo residencial frente al río Magdalena con arquitectura moderna, amenidades
+                                    de primer nivel y conexión directa con el Gran Malecón.
                                 </p>
-                                <a href="#rivatta-del-rio" class="project-btn" data-lang-es="Más Información"
-                                    data-lang-en="More Information">Más Información</a>
+                                <a href="https://share.hsforms.com/1hdfdKFUSTpCfpGh9fQrL9g560hs" class="project-btn"
+                                    target="_blank" rel="noopener noreferrer" data-lang-es="Regístrate aquí"
+                                    data-lang-en="Register here">Regístrate aquí</a>
                             </div>
                         </div>
 
-                        <!-- Proyecto 3: Vive Río Business -->
-                        <!-- <div class="project-card" data-aos="fade-up" data-aos-delay="300">
+                        <!-- Proyecto 3: ALRÍO -->
+                        <div class="project-card coming-soon" data-aos="fade-up" data-aos-delay="300">
                             <div class="project-card-image-container">
-                                <img src="./assets/imagenes/Vistas/Vive Rio.png"
-                                    alt="Vive Río Business - Espacios Comerciales" class="project-card-image">
-                                <div class="project-card-overlay"></div>
-                            </div>
-                            <div class="project-card-content">
-                                <h3 data-lang-es="VIVE RÍO BUSINESS" data-lang-en="VIVE RÍO BUSINESS">VIVE RÍO BUSINESS
-                                </h3>
-                                <p data-lang-es="Espacios comerciales y corporativos estratégicos en primera línea del Gran Malecón."
-                                    data-lang-en="Strategic commercial and corporate spaces on the front line of the Gran Malecón.">
-                                    Espacios comerciales y corporativos estratégicos en primera línea del Gran Malecón.
-                                </p>
-                                <a href="https://app-na1.hubspotdocuments.com/documents/8678656/view/1114971246?accessId=ccf25b"
-                                    class="project-btn" data-lang-es="Ver Detalles" data-lang-en="View Details">Ver
-                                    Detalles</a>
-                            </div>
-                        </div> -->
-
-                        <!-- Proyecto 4: Próximamente (Placeholder) -->
-                        <!-- <div class="project-card coming-soon" data-aos="fade-up" data-aos-delay="400">
-                            <div class="project-card-image-container">
-                                <img src="./assets/imagenes/Vistas/proyecto-proximamente.png"
-                                    alt="Próximo Proyecto - Ciudad del Río" class="project-card-image">
+                                <img src="./assets/imagenes/Alrio/alrio-card-render.jpg" alt="ALRÍO Apartamentos"
+                                    class="project-card-image" data-alt-es="ALRÍO Apartamentos"
+                                    data-alt-en="ALRÍO Apartments">
                                 <div class="project-card-overlay"></div>
                                 <div class="coming-soon-badge">
-                                    <span data-lang-es="PRÓXIMAMENTE" data-lang-en="COMING SOON">PRÓXIMAMENTE</span>
+                                    <span data-lang-es="MUY PRONTO" data-lang-en="COMING SOON">MUY PRONTO</span>
                                 </div>
                             </div>
                             <div class="project-card-content">
-                                <h3 data-lang-es="NUEVO PROYECTO" data-lang-en="NEW PROJECT">NUEVO PROYECTO</h3>
-                                <p data-lang-es="Estamos desarrollando una nueva propuesta que transformará aún más la Ciudad del Río."
-                                    data-lang-en="We are developing a new proposal that will further transform the Ciudad del Río.">
-                                    Estamos desarrollando una nueva propuesta que transformará aún más la Ciudad del
-                                    Río.
+                                <h3 data-lang-es="ALRÍO" data-lang-en="ALRÍO">ALRÍO</h3>
+                                <p data-lang-es="Primer proyecto residencial exclusivo frente al río Magdalena. Regístrate para recibir información de lanzamiento."
+                                    data-lang-en="The first exclusive residential project facing the Magdalena River. Register to receive launch information.">
+                                    Primer proyecto residencial exclusivo frente al río Magdalena. Regístrate para
+                                    recibir información de lanzamiento.
                                 </p>
-                                <a href="#contact" class="project-btn disabled" data-lang-es="Mantente Informado"
-                                    data-lang-en="Stay Informed">Mantente Informado</a>
+                                <a href="https://share.hsforms.com/1Gtbn-f_0RCiwjNTR8z41AA560hs" class="project-btn"
+                                    target="_blank" rel="noopener noreferrer" data-lang-es="Regístrate aquí"
+                                    data-lang-en="Register here">Regístrate aquí</a>
                             </div>
-                        </div> -->
+                        </div>
 
                     </div>
                 </div>
             </div>
+            </div>
         </div>
 
         <!-- 7. El Equipo Section -->
-        <section id="our-team" class="section-bg">
-            <div class="container">
+        <section id="our-team" class="section-bg al-sec al-sec--cards">
+            <div class="al-sec-card">
                 <div class="section-title" data-aos="fade-up">
                     <h2 data-lang-es="EL EQUIPO DETRÁS DE LA CIUDAD DEL RÍO"
                         data-lang-en="THE TEAM BEHIND CIUDAD DEL RÍO">EL EQUIPO DETRÁS DE LA CIUDAD DEL RÍO</h2>
@@ -1225,7 +1380,8 @@
         </section>
 
         <!-- Contact Section -->
-        <section id="contact" class="section-dark">
+        <section id="contact" class="section-dark al-sec al-sec--cards">
+            <div class="al-sec-card al-sec-card--dark">
             <div class="container text-center">
                 <h2 data-aos="fade-up" data-lang-es="FORMA PARTE DEL FUTURO DE BARRANQUILLA"
                     data-lang-en="BE PART OF BARRANQUILLA'S FUTURE">FORMA PARTE DEL FUTURO DE BARRANQUILLA</h2>
@@ -1247,11 +1403,6 @@
                     <!-- End HubSpot Form Embed Code -->
                 </div>
             </div>
-            <div class="angled-divider-bottom">
-                <svg data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 120"
-                    preserveAspectRatio="none">
-                    <path d="M1200 120L0 16.48 0 0 1200 0 1200 120z" class="shape-fill-footer"></path>
-                </svg>
             </div>
         </section>
 
@@ -1262,10 +1413,10 @@
     </main>
 
     <!-- Footer -->
-    <footer id="main-footer">
+    <footer id="main-footer" class="al-sec-sheet al-sec-sheet--footer">
         <div class="container">
             <a href="#pre-hero-banner" class="footer-logo">
-                <img src="./assets/imagenes/Logo/ciudad del rio propi (negativo)_Mesa de trabajo 1-03_Mesa de trabajo 1-03.png"
+                <img src="./assets/imagenes/Logo/ciudad del rio propi (negativo)_Mesa de trabajo 1-01.png"
                     alt="Ciudad del Río Logo Footer" data-alt-es="Ciudad del Río Logo Footer"
                     data-alt-en="Ciudad del Río Logo Footer">
             </a>
@@ -1297,25 +1448,31 @@
     </footer>
 
     <!-- === BOTÓN FLOTANTE DE WHATSAPP === -->
-    <a href="https://wa.link/d8kwra" class="whatsapp-float" target="_blank" rel="noopener noreferrer"
+    <a href="https://wa.link/d8kwra" class="whatsapp-float al-wa" id="cdr-wa" target="_blank" rel="noopener noreferrer"
         aria-label="Contactar por WhatsApp" data-aria-label-es="Contactar por WhatsApp"
         data-aria-label-en="Contact via WhatsApp">
-        <i class="fab fa-whatsapp"></i>
+        <span class="al-wa-msg" data-lang-es="Contáctanos" data-lang-en="Contact us">Contáctanos</span>
+        <span class="al-wa-btn" aria-hidden="true"><i class="fab fa-whatsapp"></i></span>
     </a>
 
-    <!-- AOS Library JS -->
-    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
-
     <!-- === TU SCRIPT PERSONALIZADO === -->
-    <script src="js/script.js"></script>
+    <script src="js/scroll-anchor.js?v=20260207c" defer></script>
+    <script src="js/al-nav.js?v=20260210d" defer></script>
+    <script src="js/cdr-hero-slider.js?v=20260207b" defer></script>
+    <script src="js/cdr-wa-bubble.js?v=20260207b" defer></script>
+    <script src="js/why-baq-hub.js?v=20260208e" defer></script>
+    <script src="js/proj-panel-carousel.js?v=20260210d" defer></script>
+    <script src="js/al-scroll.js?v=20260210e" defer></script>
+    <script src="js/script.js?v=20260210d" defer></script>
 
     <!-- === SCRIPT PARA TRADUCCIÓN === -->
     <script>
         document.addEventListener('DOMContentLoaded', () => {
             const langSwitcher = document.getElementById('language-switcher');
-            let currentLang = document.documentElement.lang || 'es'; // Obtener idioma inicial
+            let currentLang = document.documentElement.lang || 'es';
 
-            // Función para aplicar la traducción
+            if (!langSwitcher) return;
+
             const setLanguage = (lang) => {
                 currentLang = lang;
                 document.documentElement.lang = lang; // Actualizar el atributo lang del HTML
@@ -1367,6 +1524,10 @@
                     langSwitcher.textContent = 'ES';
                     langSwitcher.setAttribute('aria-label', 'Switch language to Spanish');
                 }
+
+                document.querySelectorAll('.al-lang-pill[data-lang-pick]').forEach((pill) => {
+                    pill.classList.toggle('is-active', pill.getAttribute('data-lang-pick') === lang);
+                });
 
                 // Opcional: Guardar preferencia en localStorage
                 // localStorage.setItem('preferredLanguage', lang);
